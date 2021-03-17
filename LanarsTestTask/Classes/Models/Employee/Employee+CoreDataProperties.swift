@@ -16,7 +16,7 @@ extension Employee {
         return NSFetchRequest<Employee>(entityName: "Employee")
     }
 
-    @NSManaged public var workplaceNumber: Int16
     @NSManaged public var lunchTime: Int16
+    @NSManaged public var workplaceNumber: Int16
 
 }

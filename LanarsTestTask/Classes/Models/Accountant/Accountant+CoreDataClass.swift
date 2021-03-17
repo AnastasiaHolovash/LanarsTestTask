@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 @objc(Accountant)
-public class Accountant: Person {
+public class Accountant: Employee {
 
 }

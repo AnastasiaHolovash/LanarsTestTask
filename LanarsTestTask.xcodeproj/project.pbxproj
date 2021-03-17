@@ -7,35 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF802602987900E2D827 /* PersonTableViewCell.swift */; };
+		5D17BF832602987900E2D827 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D17BF812602987900E2D827 /* PersonTableViewCell.xib */; };
+		5D17BF8C2602A42E00E2D827 /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF862602A42E00E2D827 /* Employee+CoreDataClass.swift */; };
+		5D17BF8D2602A42E00E2D827 /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF872602A42E00E2D827 /* Employee+CoreDataProperties.swift */; };
+		5D17BF8E2602A42E00E2D827 /* Accountant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF882602A42E00E2D827 /* Accountant+CoreDataClass.swift */; };
+		5D17BF8F2602A42E00E2D827 /* Accountant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF892602A42E00E2D827 /* Accountant+CoreDataProperties.swift */; };
+		5D17BF902602A42E00E2D827 /* Management+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF8A2602A42E00E2D827 /* Management+CoreDataClass.swift */; };
+		5D17BF912602A42E00E2D827 /* Management+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BF8B2602A42E00E2D827 /* Management+CoreDataProperties.swift */; };
 		5D4238C726024FF100CAC274 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238C626024FF100CAC274 /* AppDelegate.swift */; };
-		5D4238CB26024FF100CAC274 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238CA26024FF100CAC274 /* ViewController.swift */; };
+		5D4238CB26024FF100CAC274 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238CA26024FF100CAC274 /* ListViewController.swift */; };
 		5D4238CE26024FF100CAC274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4238CC26024FF100CAC274 /* Main.storyboard */; };
 		5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238CF26024FF100CAC274 /* LanarsTestTask.xcdatamodeld */; };
 		5D4238D326024FF200CAC274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4238D226024FF200CAC274 /* Assets.xcassets */; };
 		5D4238D626024FF200CAC274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4238D426024FF200CAC274 /* LaunchScreen.storyboard */; };
-		5D4238F02602728700CAC274 /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238EA2602728700CAC274 /* Employee+CoreDataClass.swift */; };
-		5D4238F12602728700CAC274 /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238EB2602728700CAC274 /* Employee+CoreDataProperties.swift */; };
-		5D4238F22602728700CAC274 /* Management+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238EC2602728700CAC274 /* Management+CoreDataClass.swift */; };
-		5D4238F32602728700CAC274 /* Management+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238ED2602728700CAC274 /* Management+CoreDataProperties.swift */; };
-		5D4238F42602728700CAC274 /* Accountant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238EE2602728700CAC274 /* Accountant+CoreDataClass.swift */; };
-		5D4238F52602728700CAC274 /* Accountant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4238EF2602728700CAC274 /* Accountant+CoreDataProperties.swift */; };
+		5D828EC92602AB3C00B5B2FF /* UIResponderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */; };
+		5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ECC2602AEFF00B5B2FF /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D17BF802602987900E2D827 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
+		5D17BF812602987900E2D827 /* PersonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonTableViewCell.xib; sourceTree = "<group>"; };
+		5D17BF862602A42E00E2D827 /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5D17BF872602A42E00E2D827 /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5D17BF882602A42E00E2D827 /* Accountant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Accountant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5D17BF892602A42E00E2D827 /* Accountant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Accountant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5D17BF8A2602A42E00E2D827 /* Management+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Management+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5D17BF8B2602A42E00E2D827 /* Management+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Management+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5D4238C326024FF100CAC274 /* LanarsTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanarsTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4238C626024FF100CAC274 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5D4238CA26024FF100CAC274 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5D4238CA26024FF100CAC274 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		5D4238CD26024FF100CAC274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D4238D026024FF100CAC274 /* LanarsTestTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LanarsTestTask.xcdatamodel; sourceTree = "<group>"; };
 		5D4238D226024FF200CAC274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D4238D526024FF200CAC274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D4238D726024FF200CAC274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D4238EA2602728700CAC274 /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5D4238EB2602728700CAC274 /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5D4238EC2602728700CAC274 /* Management+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Management+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5D4238ED2602728700CAC274 /* Management+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Management+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5D4238EE2602728700CAC274 /* Accountant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Accountant+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5D4238EF2602728700CAC274 /* Accountant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Accountant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtension.swift; sourceTree = "<group>"; };
+		5D828ECC2602AEFF00B5B2FF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +60,8 @@
 		5D17BF7A2602746700E2D827 /* Employee */ = {
 			isa = PBXGroup;
 			children = (
-				5D4238EA2602728700CAC274 /* Employee+CoreDataClass.swift */,
-				5D4238EB2602728700CAC274 /* Employee+CoreDataProperties.swift */,
+				5D17BF862602A42E00E2D827 /* Employee+CoreDataClass.swift */,
+				5D17BF872602A42E00E2D827 /* Employee+CoreDataProperties.swift */,
 			);
 			path = Employee;
 			sourceTree = "<group>";
@@ -61,8 +69,8 @@
 		5D17BF7B2602747D00E2D827 /* Management */ = {
 			isa = PBXGroup;
 			children = (
-				5D4238EC2602728700CAC274 /* Management+CoreDataClass.swift */,
-				5D4238ED2602728700CAC274 /* Management+CoreDataProperties.swift */,
+				5D17BF8A2602A42E00E2D827 /* Management+CoreDataClass.swift */,
+				5D17BF8B2602A42E00E2D827 /* Management+CoreDataProperties.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -70,10 +78,19 @@
 		5D17BF7C2602748F00E2D827 /* Accountant */ = {
 			isa = PBXGroup;
 			children = (
-				5D4238EE2602728700CAC274 /* Accountant+CoreDataClass.swift */,
-				5D4238EF2602728700CAC274 /* Accountant+CoreDataProperties.swift */,
+				5D17BF882602A42E00E2D827 /* Accountant+CoreDataClass.swift */,
+				5D17BF892602A42E00E2D827 /* Accountant+CoreDataProperties.swift */,
 			);
 			path = Accountant;
+			sourceTree = "<group>";
+		};
+		5D17BF7E2602982A00E2D827 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D17BF802602987900E2D827 /* PersonTableViewCell.swift */,
+				5D17BF812602987900E2D827 /* PersonTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5D4238BA26024FF100CAC274 = {
@@ -124,9 +141,11 @@
 		5D4238E3260250FA00CAC274 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5D828EC72602AB2300B5B2FF /* Extensions */,
 				5D4238D726024FF200CAC274 /* Info.plist */,
 				5D4238CF26024FF100CAC274 /* LanarsTestTask.xcdatamodeld */,
 				5D4238D226024FF200CAC274 /* Assets.xcassets */,
+				5D17BF7E2602982A00E2D827 /* Views */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -143,7 +162,7 @@
 		5D4238E52602516F00CAC274 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5D4238CA26024FF100CAC274 /* ViewController.swift */,
+				5D4238CA26024FF100CAC274 /* ListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -161,8 +180,17 @@
 		5D4238E72602519000CAC274 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5D828ECC2602AEFF00B5B2FF /* CoreDataManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		5D828EC72602AB2300B5B2FF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +252,7 @@
 			files = (
 				5D4238D626024FF200CAC274 /* LaunchScreen.storyboard in Resources */,
 				5D4238D326024FF200CAC274 /* Assets.xcassets in Resources */,
+				5D17BF832602987900E2D827 /* PersonTableViewCell.xib in Resources */,
 				5D4238CE26024FF100CAC274 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,15 +264,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D4238F32602728700CAC274 /* Management+CoreDataProperties.swift in Sources */,
-				5D4238CB26024FF100CAC274 /* ViewController.swift in Sources */,
+				5D17BF8C2602A42E00E2D827 /* Employee+CoreDataClass.swift in Sources */,
+				5D17BF8D2602A42E00E2D827 /* Employee+CoreDataProperties.swift in Sources */,
+				5D828EC92602AB3C00B5B2FF /* UIResponderExtension.swift in Sources */,
+				5D17BF8E2602A42E00E2D827 /* Accountant+CoreDataClass.swift in Sources */,
+				5D4238CB26024FF100CAC274 /* ListViewController.swift in Sources */,
+				5D17BF902602A42E00E2D827 /* Management+CoreDataClass.swift in Sources */,
+				5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */,
+				5D17BF912602A42E00E2D827 /* Management+CoreDataProperties.swift in Sources */,
 				5D4238C726024FF100CAC274 /* AppDelegate.swift in Sources */,
-				5D4238F22602728700CAC274 /* Management+CoreDataClass.swift in Sources */,
-				5D4238F52602728700CAC274 /* Accountant+CoreDataProperties.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
-				5D4238F42602728700CAC274 /* Accountant+CoreDataClass.swift in Sources */,
-				5D4238F02602728700CAC274 /* Employee+CoreDataClass.swift in Sources */,
-				5D4238F12602728700CAC274 /* Employee+CoreDataProperties.swift in Sources */,
+				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
+				5D17BF8F2602A42E00E2D827 /* Accountant+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

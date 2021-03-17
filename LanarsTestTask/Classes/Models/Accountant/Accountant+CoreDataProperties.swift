@@ -16,6 +16,6 @@ extension Accountant {
         return NSFetchRequest<Accountant>(entityName: "Accountant")
     }
 
-    @NSManaged public var accountantType: String?
+    @NSManaged public var accountantType: String
 
 }

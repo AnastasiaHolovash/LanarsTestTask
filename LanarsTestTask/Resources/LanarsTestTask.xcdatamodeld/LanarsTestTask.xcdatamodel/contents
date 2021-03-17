@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Accountant" representedClassName="Accountant" parentEntity="Person" syncable="YES">
+    <entity name="Accountant" representedClassName="Accountant" parentEntity="Employee" syncable="YES">
         <attribute name="accountantType" attributeType="String"/>
     </entity>
     <entity name="Employee" representedClassName="Employee" parentEntity="Person" syncable="YES">
         <attribute name="lunchTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="workplaceNumber" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Management" representedClassName="Management" parentEntity="Employee" syncable="YES">
+    <entity name="Management" representedClassName="Management" parentEntity="Person" syncable="YES">
         <attribute name="receptionHours" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" isAbstract="YES" syncable="YES" codeGenerationType="class">
@@ -15,9 +15,9 @@
         <attribute name="salary" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
+        <element name="Accountant" positionX="52.25390625" positionY="221.9453125" width="128" height="58"/>
+        <element name="Employee" positionX="54.2421875" positionY="114.40234375" width="128" height="73"/>
+        <element name="Management" positionX="-165.7109375" positionY="110.0234375" width="128" height="58"/>
         <element name="Person" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Management" positionX="85.74609375" positionY="247.578125" width="128" height="58"/>
-        <element name="Employee" positionX="83.4609375" positionY="116.53515625" width="128" height="73"/>
-        <element name="Accountant" positionX="-88.26171875" positionY="133.98046875" width="128" height="58"/>
     </elements>
 </model>
