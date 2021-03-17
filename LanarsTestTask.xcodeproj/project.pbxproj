@@ -23,6 +23,10 @@
 		5D4238D626024FF200CAC274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4238D426024FF200CAC274 /* LaunchScreen.storyboard */; };
 		5D828EC92602AB3C00B5B2FF /* UIResponderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */; };
 		5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ECC2602AEFF00B5B2FF /* CoreDataManager.swift */; };
+		5D828ED02602B8F000B5B2FF /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ECF2602B8F000B5B2FF /* FileManagerExtension.swift */; };
+		5D828ED32602BCE300B5B2FF /* AddNewPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */; };
+		5D828ED62602C02600B5B2FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED52602C02600B5B2FF /* UIViewExtension.swift */; };
+		5D828ED92602C3D400B5B2FF /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		5D4238D726024FF200CAC274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderExtension.swift; sourceTree = "<group>"; };
 		5D828ECC2602AEFF00B5B2FF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5D828ECF2602B8F000B5B2FF /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
+		5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPersonViewController.swift; sourceTree = "<group>"; };
+		5D828ED52602C02600B5B2FF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				5D4238CA26024FF100CAC274 /* ListViewController.swift */,
+				5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -189,6 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */,
+				5D828ECF2602B8F000B5B2FF /* FileManagerExtension.swift */,
+				5D828ED52602C02600B5B2FF /* UIViewExtension.swift */,
+				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,9 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D828ED62602C02600B5B2FF /* UIViewExtension.swift in Sources */,
+				5D828ED02602B8F000B5B2FF /* FileManagerExtension.swift in Sources */,
 				5D17BF8C2602A42E00E2D827 /* Employee+CoreDataClass.swift in Sources */,
 				5D17BF8D2602A42E00E2D827 /* Employee+CoreDataProperties.swift in Sources */,
 				5D828EC92602AB3C00B5B2FF /* UIResponderExtension.swift in Sources */,
+				5D828ED32602BCE300B5B2FF /* AddNewPersonViewController.swift in Sources */,
 				5D17BF8E2602A42E00E2D827 /* Accountant+CoreDataClass.swift in Sources */,
 				5D4238CB26024FF100CAC274 /* ListViewController.swift in Sources */,
 				5D17BF902602A42E00E2D827 /* Management+CoreDataClass.swift in Sources */,
@@ -275,6 +290,7 @@
 				5D4238C726024FF100CAC274 /* AppDelegate.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
 				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
+				5D828ED92602C3D400B5B2FF /* UIStoryboardExtension.swift in Sources */,
 				5D17BF8F2602A42E00E2D827 /* Accountant+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

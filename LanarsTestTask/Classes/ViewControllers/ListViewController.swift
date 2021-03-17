@@ -29,16 +29,22 @@ class ListViewController: UIViewController {
         
     }
     
+    @IBAction func addAction(_ sender: UIButton) {
+        
+        let viewController = AddNewPersonViewController.create()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        return UITableViewCell()
     }
 }
 
