@@ -11,21 +11,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gallery-->
-        <scene sceneID="GVa-9v-oKv">
+        <!--Page View Controller-->
+        <scene sceneID="2kt-9v-fER">
             <objects>
-                <viewController id="SSa-yr-ZJu" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RjJ-r8-OBG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="GOd-JW-l5w"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Gallery" image="photo.on.rectangle" catalog="system" id="3fr-1F-gGq"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qdE-w9-Onb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Q5G-ME-7SL" customClass="PageViewController" customModule="LanarsTestTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="asj-5I-kpU">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="uut-vn-4zE">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OXL-xu-EET">
+                                <rect key="frame" x="20" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="arrowshape.turn.up.left" catalog="system"/>
+                                <connections>
+                                    <action selector="backwardAction:" destination="Q5G-ME-7SL" eventType="touchUpInside" id="X6T-Dx-ujS"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="AaL-zS-RIe">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V60-QV-uum">
+                                <rect key="frame" x="350" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="arrowshape.turn.up.right" catalog="system"/>
+                                <connections>
+                                    <action selector="forwardAction:" destination="Q5G-ME-7SL" eventType="touchUpInside" id="2Wg-gz-aop"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SHX-60-apD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="593" y="846"/>
+            <point key="canvasLocation" x="1600" y="846"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -330,7 +345,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="epG-3k-UgN" kind="relationship" relationship="viewControllers" id="E4E-T4-RB9"/>
-                        <segue destination="SSa-yr-ZJu" kind="relationship" relationship="viewControllers" id="wUz-up-FdI"/>
+                        <segue destination="tuT-Wp-iRH" kind="relationship" relationship="viewControllers" id="wUz-up-FdI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tY-Ut-6Wo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -356,8 +371,80 @@
             </objects>
             <point key="canvasLocation" x="-386.95652173913044" y="846.42857142857144"/>
         </scene>
+        <!--Gallery-->
+        <scene sceneID="cDV-AY-jiK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tuT-Wp-iRH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Gallery" image="photo.on.rectangle" catalog="system" id="3fr-1F-gGq"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fqV-9v-eg4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Q5G-ME-7SL" kind="relationship" relationship="rootViewController" id="o42-dZ-by4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YCM-Zh-YUY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="592.75362318840587" y="845.75892857142856"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="LbV-N7-zta">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewController" id="dBM-BN-Kvb" customClass="PhotoViewController" customModule="LanarsTestTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eSP-4R-suu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C9X-0t-2jY">
+                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="C9X-0t-2jY" secondAttribute="height" multiplier="1:1" id="o5l-Ce-bNR"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DmS-mI-pL1"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="C9X-0t-2jY" firstAttribute="bottom" secondItem="DmS-mI-pL1" secondAttribute="bottom" id="6HB-KR-QnG"/>
+                            <constraint firstItem="C9X-0t-2jY" firstAttribute="leading" secondItem="DmS-mI-pL1" secondAttribute="leading" id="GPi-HN-ayP"/>
+                            <constraint firstItem="C9X-0t-2jY" firstAttribute="top" secondItem="DmS-mI-pL1" secondAttribute="top" id="LrD-fL-ixY"/>
+                            <constraint firstItem="C9X-0t-2jY" firstAttribute="trailing" secondItem="DmS-mI-pL1" secondAttribute="trailing" id="hPH-8O-Eho"/>
+                            <constraint firstItem="C9X-0t-2jY" firstAttribute="centerY" secondItem="DmS-mI-pL1" secondAttribute="centerY" id="mKG-ZC-P3F"/>
+                            <constraint firstItem="C9X-0t-2jY" firstAttribute="centerX" secondItem="DmS-mI-pL1" secondAttribute="centerX" id="ynK-gh-Fb9"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ynK-gh-Fb9"/>
+                                <exclude reference="LrD-fL-ixY"/>
+                                <exclude reference="6HB-KR-QnG"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="ynK-gh-Fb9"/>
+                                <exclude reference="GPi-HN-ayP"/>
+                                <include reference="LrD-fL-ixY"/>
+                                <exclude reference="mKG-ZC-P3F"/>
+                                <exclude reference="hPH-8O-Eho"/>
+                                <include reference="6HB-KR-QnG"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="C9X-0t-2jY" id="Hbt-nN-elY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XR9-Me-B5o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488" y="846"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>

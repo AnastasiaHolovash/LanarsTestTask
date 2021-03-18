@@ -32,6 +32,8 @@
 		5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */; };
 		5DBF1D202603D8F20079757E /* NSManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */; };
 		5DBF1D232603E12A0079757E /* TableDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */; };
+		5DBF1D272603E7800079757E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D262603E7800079757E /* PageViewController.swift */; };
+		5DBF1D2B2603E79C0079757E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtension.swift; sourceTree = "<group>"; };
 		5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDiffableDataSource.swift; sourceTree = "<group>"; };
+		5DBF1D262603E7800079757E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,11 +163,12 @@
 		5D4238E3260250FA00CAC274 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5D828EC72602AB2300B5B2FF /* Extensions */,
 				5D4238D726024FF200CAC274 /* Info.plist */,
 				5D4238CF26024FF100CAC274 /* LanarsTestTask.xcdatamodeld */,
 				5D4238D226024FF200CAC274 /* Assets.xcassets */,
+				5DBF1D252603E70F0079757E /* DataSources */,
 				5D17BF7E2602982A00E2D827 /* Views */,
+				5D828EC72602AB2300B5B2FF /* Extensions */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -180,9 +185,8 @@
 		5D4238E52602516F00CAC274 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5D4238CA26024FF100CAC274 /* ListViewController.swift */,
-				5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */,
-				5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */,
+				5DBF1D2D2603EF050079757E /* List */,
+				5DBF1D2E2603EF160079757E /* Gallery */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -234,6 +238,32 @@
 				5D17BF7C2602748F00E2D827 /* Accountant */,
 			);
 			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		5DBF1D252603E70F0079757E /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		5DBF1D2D2603EF050079757E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				5D4238CA26024FF100CAC274 /* ListViewController.swift */,
+				5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		5DBF1D2E2603EF160079757E /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */,
+				5DBF1D262603E7800079757E /* PageViewController.swift */,
+			);
+			path = Gallery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +339,7 @@
 			files = (
 				5D828ED62602C02600B5B2FF /* UIViewExtension.swift in Sources */,
 				5D828ED02602B8F000B5B2FF /* FileManagerExtension.swift in Sources */,
+				5DBF1D2B2603E79C0079757E /* PhotoViewController.swift in Sources */,
 				5D828EDF2602D0D900B5B2FF /* Person+CoreDataProperties.swift in Sources */,
 				5D17BF8C2602A42E00E2D827 /* Employee+CoreDataClass.swift in Sources */,
 				5D17BF8D2602A42E00E2D827 /* Employee+CoreDataProperties.swift in Sources */,
@@ -320,6 +351,7 @@
 				5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */,
 				5D17BF912602A42E00E2D827 /* Management+CoreDataProperties.swift in Sources */,
 				5D4238C726024FF100CAC274 /* AppDelegate.swift in Sources */,
+				5DBF1D272603E7800079757E /* PageViewController.swift in Sources */,
 				5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
 				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
