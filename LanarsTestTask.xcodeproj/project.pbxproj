@@ -30,6 +30,8 @@
 		5D828EDE2602D0D900B5B2FF /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */; };
 		5D828EDF2602D0D900B5B2FF /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */; };
 		5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */; };
+		5DBF1D202603D8F20079757E /* NSManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */; };
+		5DBF1D232603E12A0079757E /* TableDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtension.swift; sourceTree = "<group>"; };
+		5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDiffableDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,7 @@
 			children = (
 				5D4238CA26024FF100CAC274 /* ListViewController.swift */,
 				5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */,
+				5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				5D828ED52602C02600B5B2FF /* UIViewExtension.swift */,
 				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
 				5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */,
+				5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -317,9 +323,11 @@
 				5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
 				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
+				5DBF1D232603E12A0079757E /* TableDiffableDataSource.swift in Sources */,
 				5D828EDE2602D0D900B5B2FF /* Person+CoreDataClass.swift in Sources */,
 				5D828ED92602C3D400B5B2FF /* UIStoryboardExtension.swift in Sources */,
 				5D17BF8F2602A42E00E2D827 /* Accountant+CoreDataProperties.swift in Sources */,
+				5DBF1D202603D8F20079757E /* NSManagedObjectExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

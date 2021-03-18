@@ -12,10 +12,6 @@ import CoreData
 
 extension Employee {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Employee> {
-        return NSFetchRequest<Employee>(entityName: "Employee")
-    }
-
     @NSManaged public var lunchTime: Int16
     @NSManaged public var workplaceNumber: Int16
 

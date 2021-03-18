@@ -31,7 +31,6 @@ class CoreDataManager {
         setup()
     }
     
-    
     private func setup() {
         
         persistentContainer.loadPersistentStores { _, error in
@@ -40,6 +39,8 @@ class CoreDataManager {
             }
         }
     }
+    
+    // MARK: - Create
     
     @discardableResult
     private func insertObject<ManagedObject: NSManagedObject>(type: ManagedObject.Type,
@@ -56,7 +57,6 @@ class CoreDataManager {
     func entityForName(entityName: String) -> NSEntityDescription {
         return NSEntityDescription.entity(forEntityName: entityName, in: viewContext)!
     }
-    
     
     // MARK: Management
     
@@ -80,20 +80,7 @@ class CoreDataManager {
         }
     }
     
-    func fetchManagement(completion:@escaping (Result<[Management], Error>) -> Void) {
-        
-        let request: NSFetchRequest<Management> = Management.fetchRequest()
-        request.includesSubentities = false
-        
-        do {
-            let employees = try viewContext.fetch(request)
-            completion(.success(employees))
-        } catch {
-            debugPrint(error.localizedDescription)
-            completion(.failure(error))
-        }
-        
-    }
+    
     
     // MARK: Employee
     
@@ -116,23 +103,6 @@ class CoreDataManager {
         }
     }
     
-    func fetchEmployee(completion:@escaping (Result<[Employee], Error>) -> Void) {
-        
-        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
-        let sort = NSSortDescriptor(key: "id", ascending: true)
-        request.sortDescriptors = [sort]
-        
-        request.includesSubentities = false
-        
-        do {
-            let employees = try viewContext.fetch(request)
-            completion(.success(employees))
-        } catch {
-            debugPrint(error.localizedDescription)
-            completion(.failure(error))
-        }
-        
-    }
     
     // MARK: Accountant
     
@@ -157,9 +127,13 @@ class CoreDataManager {
         }
     }
     
-    func fetchAccountant(completion:@escaping (Result<[Accountant], Error>) -> Void) {
+    // MARK: - Fetch
+    
+    func fetch<Object: NSManagedObject>(object: Object.Type, completion:@escaping (Result<[Object], Error>) -> Void) {
         
-        let request: NSFetchRequest<Accountant> = Accountant.fetchRequest()
+        let request: NSFetchRequest<Object> = Object.fetchRequest()
+        let sort = NSSortDescriptor(key: "id", ascending: true)
+        request.sortDescriptors = [sort]
         request.includesSubentities = false
         
         do {
@@ -171,47 +145,45 @@ class CoreDataManager {
         }
     }
     
-    //    func updateItemsOrder(change: [(from: Int, to: Int)]) {
-    //
-    //        let context = persistentContainer.newBackgroundContext()
-    //        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
-    //
-    //        change.forEach { from, to in
-    //            request.predicate = NSPredicate(format: "id == \(from)")
-    //
-    //            do {
-    //                let results = try context.fetch(request)
-    //                if results.count != 0 {
-    //
-    //                    results[0].setValue(to, forKey: "id")
-    //                }
-    //            } catch {
-    //                print("Fetch Failed: \(error)")
-    //            }
-    //        }
-    //
-    //        do {
-    //            try context.save()
-    //        } catch {
-    //            print("Save Failed: \(error)")
-    //        }
-    //    }
+    // MARK: - Update
     
-    func change(employees: [Employee]) {
+    func update<Object: NSManagedObject>(object: Object.Type, with data: [Object], completion: @escaping (Result<[Object], Error>) -> Void) {
+        
         let context = persistentContainer.newBackgroundContext()
-        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
+        let request: NSFetchRequest<Object> = Object.fetchRequest()
         
         do {
             try context.fetch(request).forEach { context.delete($0) }
             
-            for index in 0..<employees.count {
+            for index in 0..<data.count {
                 
-                let oldEmployee = employees[index]
-                try insertObject(type: Employee.self, managedObjectContext: context) { employee in
+                let newObject = data[index]
+                try insertObject(type: Object.self, managedObjectContext: context) { object in
                     
-                    employee.setup(id: index, name: oldEmployee.name ?? "", salary: Int(oldEmployee.salary), workplaceNumber: Int(oldEmployee.workplaceNumber), lunchTime: Int(oldEmployee.lunchTime))
+                    if let management = object as? Management, let newManagement = newObject as? Management  {
+                        
+                        management.setup(id: index,
+                                        name: newManagement.name,
+                                        salary: Int(newManagement.salary))
+                        
+                    } else if let employee = object as? Employee, let newEmployee = newObject as? Employee {
+                        
+                        employee.setup(id: index,
+                                       name: newEmployee.name,
+                                       salary: Int(newEmployee.salary),
+                                       workplaceNumber: Int(newEmployee.workplaceNumber),
+                                       lunchTime: Int(newEmployee.lunchTime))
+                        
+                    } else if let accountant = object as? Accountant, let newAccountant = newObject as? Accountant {
+                        
+                        accountant.setup(id: index,
+                                         name: newAccountant.name,
+                                         salary: Int(newAccountant.salary),
+                                         workplaceNumber: Int(newAccountant.salary),
+                                         lunchTime: Int(newAccountant.salary),
+                                         accountantType: Accountant.AccountantType(rawValue: newAccountant.accountantType) ?? .payroll)
+                    }
                 }
-                
             }
             
             try context.save()
@@ -219,5 +191,4 @@ class CoreDataManager {
             print("Save Failed: \(error)")
         }
     }
-    
 }
