@@ -8,14 +8,52 @@
 import UIKit
 
 class ListViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIButton!
     
     let coreDataManager = CoreDataManager.shared
     
     private var management: [Management] = []
     private var employees: [Employee] = []
     private var accountant: [Accountant] = []
+    
+    struct PersonsData {
+        
+        var management: [Management] = []
+        var employees: [Employee] = []
+        var accountant: [Accountant] = []
+        
+        subscript(index: Int) -> [Person] {
+            get {
+                switch index {
+                case 0:
+                    return management
+                case 1:
+                    return employees
+                case 2:
+                    return accountant
+                default:
+                    return []
+                }
+            }
+            set {
+                switch index {
+                case 0:
+                    management = newValue as? [Management] ?? []
+                case 1:
+                    employees = newValue as? [Employee] ?? []
+                case 2:
+                    accountant = newValue as? [Accountant] ?? []
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    private var personsTableViewData = PersonsData(management: [], employees: [], accountant: [])
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +68,7 @@ class ListViewController: UIViewController {
             case .success(let ent):
                 ent.forEach { print($0) }
                 self?.management = ent
+                self?.personsTableViewData.management = ent
                 self?.tableView.reloadData()
                 
             case .failure(let error):
@@ -41,6 +80,7 @@ class ListViewController: UIViewController {
             case .success(let ent):
                 ent.forEach { print($0) }
                 self?.employees = ent
+                self?.personsTableViewData.employees = ent
                 self?.tableView.reloadData()
                 
             case .failure(let error):
@@ -52,6 +92,7 @@ class ListViewController: UIViewController {
             case .success(let ent):
                 ent.forEach { print($0) }
                 self?.accountant = ent
+                self?.personsTableViewData.accountant = ent
                 self?.tableView.reloadData()
                 
             case .failure(let error):
@@ -59,7 +100,7 @@ class ListViewController: UIViewController {
             }
         }
     }
-
+    
     private func tableViewSetup() {
         
         tableView.dataSource = self
@@ -70,6 +111,14 @@ class ListViewController: UIViewController {
     
     @IBAction func editAction(_ sender: UIButton) {
         
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true);
+            editButton.setTitle("Edit", for: .normal)
+            
+        } else {
+            tableView.setEditing(true, animated: true);
+            editButton.setTitle("Done", for: .normal)
+        }
     }
     
     @IBAction func addAction(_ sender: UIButton) {
@@ -105,33 +154,14 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch section {
-        case 0:
-            return management.count
-        case 1:
-            return employees.count
-        case 2:
-            return accountant.count
-        default:
-            return 0
-        }
+        return personsTableViewData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as! PersonTableViewCell
         
-        switch indexPath.section {
-        case 0:
-            cell.setup(management[indexPath.row])
-        case 1:
-            cell.setup(employees[indexPath.row])
-        case 2:
-            cell.setup(accountant[indexPath.row])
-        default:
-            break
-        }
-        
+        cell.setup(person: personsTableViewData[indexPath.section][indexPath.row])
         return cell
     }
 }
@@ -140,5 +170,42 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            personsTableViewData[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        
+        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+            var row = 0
+            if sourceIndexPath.section < proposedDestinationIndexPath.section {
+                row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
+            }
+            return IndexPath(row: row, section: sourceIndexPath.section)
+        }
+        return proposedDestinationIndexPath
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let sourceItem = personsTableViewData[sourceIndexPath.section].remove(at: sourceIndexPath.row)
+        personsTableViewData[destinationIndexPath.section].insert(sourceItem, at: destinationIndexPath.row)
+        
+    }
 }
 

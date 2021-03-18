@@ -54,32 +54,32 @@ final class PersonTableViewCell: UITableViewCell {
         accountantType.isHidden = false
     }
     
-//    public func setup(person: Person) {
-//
-//        hideAllOptionalLabels()
-//        nameLabel.text = person.name
-//        salaryLabel.text = String(person.salary)
-//
-//        if let management = person as? Management {
-//
-//            receptionHoursLabel.text = String(management.receptionHours)
-//            receptionHoursLabel.isHidden = false
-//        }
-//
-//        if let employee = person as? Employee {
-//
-//            workplaceNumberLabel.text = String(employee.workplaceNumber)
-//            lunchTimeLabel.text = String(employee.lunchTime)
-//            workplaceNumberLabel.isHidden = false
-//            lunchTimeLabel.isHidden = false
-//
-//            if let accountant = employee as? Accountant {
-//
-//                accountantType.text = String(accountant.accountantType)
-//                accountantType.isHidden = false
-//            }
-//        }
-//    }
+    public func setup(person: Person) {
+
+        hideAllOptionalLabels()
+        nameLabel.text = person.name
+        salaryLabel.text = String(person.salary)
+
+        if let management = person as? Management {
+
+            receptionHoursLabel.text = String(management.receptionHours)
+            receptionHoursLabel.isHidden = false
+        }
+
+        if let employee = person as? Employee {
+
+            workplaceNumberLabel.text = String(employee.workplaceNumber)
+            lunchTimeLabel.text = String(employee.lunchTime)
+            workplaceNumberLabel.isHidden = false
+            lunchTimeLabel.isHidden = false
+
+            if let accountant = employee as? Accountant {
+
+                accountantType.text = String(accountant.accountantType)
+                accountantType.isHidden = false
+            }
+        }
+    }
 
     
     override func prepareForReuse() {

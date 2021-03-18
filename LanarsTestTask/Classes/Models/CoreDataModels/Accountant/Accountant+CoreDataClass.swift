@@ -12,8 +12,8 @@ import CoreData
 @objc(Accountant)
 public class Accountant: Employee {
 
-    func setup(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: AccountantType) {
-        super.setup(name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime)
+    func setup(id: Int, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: AccountantType) {
+        super.setup(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime)
         
         self.accountantType = accountantType.rawValue
     }

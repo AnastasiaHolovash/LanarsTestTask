@@ -12,18 +12,10 @@ import CoreData
 @objc(Person)
 public class Person: NSManagedObject {
     
-    func setup(name: String, salary: Int) {
+    func setup(id: Int, name: String, salary: Int) {
         
+        self.id = Int16(id)
         self.name = name
         self.salary = Int64(salary)
     }
-    
-    //    convenience init(name: String, salary: Int, moc: NSManagedObjectContext) {
-    //
-    //        let entity = NSEntityDescription.entity(forEntityName: "Person", in: moc)
-    //        self.init(entity: entity!, insertInto: moc)
-    //        // vars
-    //        self.name = name
-    //        self.salary = Int64(salary)
-    //    }
 }

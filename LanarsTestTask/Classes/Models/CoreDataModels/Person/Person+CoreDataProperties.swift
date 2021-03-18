@@ -18,7 +18,7 @@ extension Person {
 
     @NSManaged public var name: String?
     @NSManaged public var salary: Int64
-
+    @NSManaged public var id: Int16
 }
 
 extension Person : Identifiable {

@@ -116,6 +116,7 @@ class AddNewPersonViewController: UIViewController {
                     print(error)
                 }
             }
+            
         case .accountant:
             coreDataManager.createAccountant(name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType) { result in
                 switch result {

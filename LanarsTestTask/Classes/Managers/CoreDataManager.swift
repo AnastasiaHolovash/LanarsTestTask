@@ -60,15 +60,17 @@ class CoreDataManager {
     
     // MARK: Management
     
-    func createManagement(name: String, salary: Int, receptionHours: Int, completion:@escaping (Result<Management, Error>) -> Void) {
+    func createManagement(name: String, salary: Int, receptionHours: Int, completion: @escaping (Result<Management, Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
+        let request: NSFetchRequest<Management> = Management.fetchRequest()
+        request.includesSubentities = false
+        
         do {
+            let id = try context.count(for: request)
             let employee = try insertObject(type: Management.self, managedObjectContext: context) { employee in
                 
-                employee.name = name
-                employee.salary = Int64(salary)
-                employee.receptionHours = Int16(receptionHours)
+                employee.setup(id: id, name: name, salary: salary, receptionHours: receptionHours)
             }
             try context.save()
             completion(.success(employee))
@@ -81,7 +83,8 @@ class CoreDataManager {
     func fetchManagement(completion:@escaping (Result<[Management], Error>) -> Void) {
 
         let request: NSFetchRequest<Management> = Management.fetchRequest()
-
+        request.includesSubentities = false
+        
         do {
             let employees = try viewContext.fetch(request)
             completion(.success(employees))
@@ -91,17 +94,19 @@ class CoreDataManager {
         }
 
     }
-
     
     // MARK: Employee
     
     func createEmployee(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, completion:@escaping (Result<Employee, Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
+        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
+        request.includesSubentities = false
         do {
+            let id = try context.count(for: request)
             let employee = try insertObject(type: Employee.self, managedObjectContext: context) { employee in
                 
-                employee.setup(name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime)
+                employee.setup(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime)
             }
             try context.save()
             completion(.success(employee))
@@ -114,6 +119,7 @@ class CoreDataManager {
     func fetchEmployee(completion:@escaping (Result<[Employee], Error>) -> Void) {
         
         let request: NSFetchRequest<Employee> = Employee.fetchRequest()
+        request.includesSubentities = false
         
         do {
             let employees = try viewContext.fetch(request)
@@ -130,12 +136,16 @@ class CoreDataManager {
     func createAccountant(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: Accountant.AccountantType, completion:@escaping (Result<Accountant, Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
+        let request: NSFetchRequest<Accountant> = Accountant.fetchRequest()
+        request.includesSubentities = false
         do {
+            let id = try context.count(for: request)
             let employee = try insertObject(type: Accountant.self, managedObjectContext: context) { employee in
                 
-                employee.setup(name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType)
+                employee.setup(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType)
 
             }
+            
             try context.save()
             completion(.success(employee))
         } catch {
@@ -147,6 +157,7 @@ class CoreDataManager {
     func fetchAccountant(completion:@escaping (Result<[Accountant], Error>) -> Void) {
         
         let request: NSFetchRequest<Accountant> = Accountant.fetchRequest()
+        request.includesSubentities = false
         
         do {
             let employees = try viewContext.fetch(request)
@@ -155,21 +166,27 @@ class CoreDataManager {
             debugPrint(error.localizedDescription)
             completion(.failure(error))
         }
-        
     }
     
-//    func fetch<ManagedObject: Person>(completion:@escaping (Result<[ManagedObject], Error>) -> Void) {
-//
-//        let request = ManagedObject.fetchRequest()
-//
-//        do {
-//            let employees = try viewContext.fetch(request)
-//            completion(.success(employees))
-//        } catch {
-//            debugPrint(error.localizedDescription)
-//            completion(.failure(error))
-//        }
-//
-//    }
+    func updateItemsOrder(from: Int, to: Int) {
+        
+        let context = persistentContainer.newBackgroundContext()
+        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
+
+        request.predicate = from < to ? NSPredicate(format: "id >= \(from) AND id <= \(to)") : NSPredicate(format: "id >= \(to) AND id <= \(from)")
+
+        do {
+            let results = try context.fetch(request)
+            if results.count != 0 {
+                
+                results[0].setValue(0, forKey: "id")
+            }
+            try context.save()
+        } catch {
+            print("Fetch Failed: \(error)")
+        }
+
+
+    }
     
 }
