@@ -13,7 +13,6 @@ final class TableDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentif
     
     var didDeleteItem: ((ItemIdentifierType, IndexPath) -> Void)?
     var didMoveItem: ((IndexPath, IndexPath) -> Void)?
-
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         

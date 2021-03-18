@@ -60,17 +60,17 @@ class CoreDataManager {
     
     // MARK: Management
     
-    func createManagement(name: String, salary: Int, receptionHours: Int, completion: @escaping (Result<Management, Error>) -> Void) {
+    func createManagement(id: Int? = nil, name: String, salary: Int, receptionHours: Int, completion: @escaping (Result<Management, Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
         let request: NSFetchRequest<Management> = Management.fetchRequest()
         request.includesSubentities = false
         
         do {
-            let id = try context.count(for: request)
+            let newId = id != nil ? id! : try context.count(for: request)
             let employee = try insertObject(type: Management.self, managedObjectContext: context) { employee in
                 
-                employee.setup(id: id, name: name, salary: salary, receptionHours: receptionHours)
+                employee.setup(id: newId, name: name, salary: salary, receptionHours: receptionHours)
             }
             try context.save()
             completion(.success(employee))
@@ -80,11 +80,9 @@ class CoreDataManager {
         }
     }
     
-    
-    
     // MARK: Employee
     
-    func createEmployee(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, completion:@escaping (Result<Employee, Error>) -> Void) {
+    func createEmployee(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, completion: @escaping (Result<Employee, Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
         let request: NSFetchRequest<Employee> = Employee.fetchRequest()
@@ -102,7 +100,6 @@ class CoreDataManager {
             completion(.failure(error))
         }
     }
-    
     
     // MARK: Accountant
     
@@ -191,4 +188,25 @@ class CoreDataManager {
             print("Save Failed: \(error)")
         }
     }
+    
+    // MARK: Management
+    
+    func delete<Object: NSManagedObject>(object: Object.Type, id: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        let context = persistentContainer.newBackgroundContext()
+        
+        let request: NSFetchRequest<Object> = Object.fetchRequest()
+        request.predicate = NSPredicate(format: "id == \(id)")
+        request.includesSubentities = false
+        
+        do {
+            try context.fetch(request).forEach { context.delete($0) }
+            try context.save()
+            completion(.success(()))
+        } catch {
+            debugPrint(error.localizedDescription)
+            completion(.failure(error))
+        }
+    }
+    
 }

@@ -259,9 +259,6 @@
                                                             <segment title="Payroll "/>
                                                             <segment title="Materials accounting"/>
                                                         </segments>
-                                                        <connections>
-                                                            <action selector="accountantTypeAction:" destination="Soi-hg-JJI" eventType="valueChanged" id="iM3-KP-YvX"/>
-                                                        </connections>
                                                     </segmentedControl>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSG-MI-Sil">
                                                         <rect key="frame" x="0.0" y="31" width="382" height="1"/>
@@ -320,6 +317,7 @@
                         <outlet property="lunchTimeStackView" destination="lWB-W0-dyc" id="ZnZ-rF-9Nl"/>
                         <outlet property="lunchTimeTextField" destination="rlB-vI-FD1" id="ycz-nw-6aZ"/>
                         <outlet property="nameTextField" destination="Mun-x0-0wy" id="waY-zo-QHl"/>
+                        <outlet property="personTypeSegmentedControl" destination="pcz-ZH-IEt" id="VNK-Dy-Qac"/>
                         <outlet property="receptionHoursStackView" destination="2U7-z6-XZa" id="r0d-KN-Bs3"/>
                         <outlet property="receptionHoursTextField" destination="2Fr-6Y-hsa" id="NlZ-G8-hKE"/>
                         <outlet property="salaryStackView" destination="PMF-gl-ejP" id="w9w-zQ-w5g"/>

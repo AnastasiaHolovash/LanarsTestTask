@@ -21,6 +21,7 @@ final class PageViewController: UIPageViewController {
         
         view.backgroundColor = .systemGroupedBackground
         delegate = self
+        dataSource = self
         
         let viewController = PhotoViewController.create(with: getImage(for: currentIndex))
         
@@ -74,7 +75,7 @@ final class PageViewController: UIPageViewController {
 
 // MARK: - UIPageViewControllerDataSource & UIPageViewControllerDelegate
 
-extension PageViewController: UIPageViewControllerDelegate {
+extension PageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         

@@ -147,11 +147,8 @@ final class ListViewController: UIViewController {
             isEditingMode = false
             if let dataBeforeEditing = PersonsData.savedStateBeforeEditing {
                 personsTableViewData = dataBeforeEditing
-                //                tableView.reloadData()
                 applySnapshot()
-                
             }
-            
         } else {
             
             // Set Editing
@@ -213,43 +210,6 @@ final class ListViewController: UIViewController {
     
 }
 
-//// MARK: - UITableViewDataSource
-//
-//extension ListViewController: UITableViewDataSource {
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//
-//        return 3
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//        switch section {
-//        case 0:
-//            return "Management"
-//        case 1:
-//            return "Employee"
-//        case 2:
-//            return "Accountant"
-//        default:
-//            return nil
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//        return personsTableViewData[section].count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as! PersonTableViewCell
-//
-//        cell.setup(person: personsTableViewData[indexPath.section][indexPath.row])
-//        return cell
-//    }
-//}
-
 // MARK: - UITableViewDelegate
 
 extension ListViewController: UITableViewDelegate {
@@ -264,6 +224,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         return 30
     }
     
@@ -281,17 +242,11 @@ extension ListViewController: UITableViewDelegate {
         }
     }
     
-    //    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-    //
-    //        return true
-    //    }
-    
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             var row = 0
             if sourceIndexPath.section < proposedDestinationIndexPath.section {
-                //                row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
                 let section =  Section(rawValue: sourceIndexPath.section) ?? .employee
                 row = dataSource.snapshot().numberOfItems(inSection: section) - 1
                 
@@ -301,11 +256,10 @@ extension ListViewController: UITableViewDelegate {
         return proposedDestinationIndexPath
     }
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let sourceItem = personsTableViewData[sourceIndexPath.section].remove(at: sourceIndexPath.row)
-        personsTableViewData[destinationIndexPath.section].insert(sourceItem, at: destinationIndexPath.row)
-        
+        let viewController = AddNewPersonViewController.create(person: personsTableViewData[indexPath.section][indexPath.row])
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

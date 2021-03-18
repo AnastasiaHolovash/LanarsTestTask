@@ -17,42 +17,42 @@ final class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var lunchTimeLabel: UILabel!
     @IBOutlet weak var accountantType: UILabel!
     
-    public func setup(_ person: Management) {
-        
-        nameLabel.text = person.name
-        salaryLabel.text = String(person.salary)
-        receptionHoursLabel.text = String(person.receptionHours)
-        
-        hideAllOptionalLabels()
-        receptionHoursLabel.isHidden = false
-    }
-    
-    public func setup(_ person: Employee) {
-        
-        hideAllOptionalLabels()
-        nameLabel.text = person.name
-        salaryLabel.text = String(person.salary)
-        workplaceNumberLabel.text = String(person.workplaceNumber)
-        lunchTimeLabel.text = String(person.lunchTime)
-        
-        hideAllOptionalLabels()
-        workplaceNumberLabel.isHidden = false
-        lunchTimeLabel.isHidden = false
-    }
-    
-    public func setup(_ person: Accountant) {
-        
-        nameLabel.text = person.name
-        salaryLabel.text = String(person.salary)
-        workplaceNumberLabel.text = String(person.workplaceNumber)
-        lunchTimeLabel.text = String(person.lunchTime)
-        accountantType.text = String(person.accountantType)
-        
-        hideAllOptionalLabels()
-        workplaceNumberLabel.isHidden = false
-        lunchTimeLabel.isHidden = false
-        accountantType.isHidden = false
-    }
+//    public func setup(_ person: Management) {
+//
+//        nameLabel.text = person.name
+//        salaryLabel.text = String(person.salary)
+//        receptionHoursLabel.text = String(person.receptionHours)
+//
+//        hideAllOptionalLabels()
+//        receptionHoursLabel.isHidden = false
+//    }
+//
+//    public func setup(_ person: Employee) {
+//
+//        hideAllOptionalLabels()
+//        nameLabel.text = person.name
+//        salaryLabel.text = String(person.salary)
+//        workplaceNumberLabel.text = String(person.workplaceNumber)
+//        lunchTimeLabel.text = String(person.lunchTime)
+//
+//        hideAllOptionalLabels()
+//        workplaceNumberLabel.isHidden = false
+//        lunchTimeLabel.isHidden = false
+//    }
+//
+//    public func setup(_ person: Accountant) {
+//
+//        nameLabel.text = person.name
+//        salaryLabel.text = String(person.salary)
+//        workplaceNumberLabel.text = String(person.workplaceNumber)
+//        lunchTimeLabel.text = String(person.lunchTime)
+//        accountantType.text = String(person.accountantType)
+//
+//        hideAllOptionalLabels()
+//        workplaceNumberLabel.isHidden = false
+//        lunchTimeLabel.isHidden = false
+//        accountantType.isHidden = false
+//    }
     
     public func setup(person: Person) {
 
