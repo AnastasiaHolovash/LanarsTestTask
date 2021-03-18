@@ -17,27 +17,30 @@ final class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var lunchTimeLabel: UILabel!
     @IBOutlet weak var accountantType: UILabel!
     
-    public func setup(person: Management) {
+    public func setup(_ person: Management) {
         
         nameLabel.text = person.name
         salaryLabel.text = String(person.salary)
         receptionHoursLabel.text = String(person.receptionHours)
         
+        hideAllOptionalLabels()
         receptionHoursLabel.isHidden = false
     }
     
-    public func setup(person: Employee) {
+    public func setup(_ person: Employee) {
         
+        hideAllOptionalLabels()
         nameLabel.text = person.name
         salaryLabel.text = String(person.salary)
         workplaceNumberLabel.text = String(person.workplaceNumber)
         lunchTimeLabel.text = String(person.lunchTime)
         
+        hideAllOptionalLabels()
         workplaceNumberLabel.isHidden = false
         lunchTimeLabel.isHidden = false
     }
     
-    public func setup(person: Accountant) {
+    public func setup(_ person: Accountant) {
         
         nameLabel.text = person.name
         salaryLabel.text = String(person.salary)
@@ -45,6 +48,7 @@ final class PersonTableViewCell: UITableViewCell {
         lunchTimeLabel.text = String(person.lunchTime)
         accountantType.text = String(person.accountantType)
         
+        hideAllOptionalLabels()
         workplaceNumberLabel.isHidden = false
         lunchTimeLabel.isHidden = false
         accountantType.isHidden = false
@@ -52,6 +56,7 @@ final class PersonTableViewCell: UITableViewCell {
     
 //    public func setup(person: Person) {
 //
+//        hideAllOptionalLabels()
 //        nameLabel.text = person.name
 //        salaryLabel.text = String(person.salary)
 //
@@ -75,8 +80,15 @@ final class PersonTableViewCell: UITableViewCell {
 //            }
 //        }
 //    }
+
     
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        
+    }
+    
+    private func hideAllOptionalLabels() {
         
         receptionHoursLabel.isHidden = true
         workplaceNumberLabel.isHidden = true

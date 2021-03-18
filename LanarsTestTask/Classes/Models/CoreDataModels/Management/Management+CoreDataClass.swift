@@ -12,4 +12,9 @@ import CoreData
 @objc(Management)
 public class Management: Person {
 
+    func setup(name: String, salary: Int, receptionHours: Int) {
+        super.setup(name: name, salary: salary)
+        
+        self.receptionHours = Int16(receptionHours)
+    }
 }

@@ -89,9 +89,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="pxK-8o-OO4" secondAttribute="trailing" constant="8" id="80o-Kf-M2F"/>
+                    <constraint firstItem="h40-xH-v8G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="Cgq-6t-dfE"/>
                     <constraint firstItem="h40-xH-v8G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="VFa-0D-sg0"/>
-                    <constraint firstItem="h40-xH-v8G" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Y4e-qk-vuZ"/>
                     <constraint firstItem="pxK-8o-OO4" firstAttribute="leading" secondItem="h40-xH-v8G" secondAttribute="trailing" constant="8" id="ZI5-DV-Lt0"/>
+                    <constraint firstAttribute="bottom" secondItem="h40-xH-v8G" secondAttribute="bottom" constant="21" id="i7f-gX-sbr"/>
                     <constraint firstItem="pxK-8o-OO4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pDw-2R-71H"/>
                 </constraints>
             </tableViewCellContentView>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4AF48D55-7AFD-421E-9E34-FB3B1778A723"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7A37C2A-F10F-4371-81DB-360B4508AE08"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LanarsTestTask/Classes/ViewControllers/AddNewPersonViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "createPerson()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C64DBCE-E0A4-4521-9AAB-266B335C7A30"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LanarsTestTask/Classes/ViewControllers/AddNewPersonViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "createPerson()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B058FAE-12C3-4FC7-9222-EE7788FC023A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LanarsTestTask/Classes/ViewControllers/ListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0B058FAE-12C3-4FC7-9222-EE7788FC023A - 71706f26837ea44c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;LanarsTestTask.Employee&gt;, Swift.Error&gt;) -&gt; () in LanarsTestTask.ListViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "LanarsTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anastasia/Documents/GitHub/LanarsTestTask/LanarsTestTask/Classes/ViewControllers/ListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "0B058FAE-12C3-4FC7-9222-EE7788FC023A - dfca23b1901caa64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (LanarsTestTask.Employee) -&gt; () in closure #1 (Swift.Result&lt;Swift.Array&lt;LanarsTestTask.Employee&gt;, Swift.Error&gt;) -&gt; () in LanarsTestTask.ListViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "LanarsTestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anastasia/Documents/GitHub/LanarsTestTask/LanarsTestTask/Classes/ViewControllers/ListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

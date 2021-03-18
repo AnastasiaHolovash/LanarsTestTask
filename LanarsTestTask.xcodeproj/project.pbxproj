@@ -27,6 +27,8 @@
 		5D828ED32602BCE300B5B2FF /* AddNewPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */; };
 		5D828ED62602C02600B5B2FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED52602C02600B5B2FF /* UIViewExtension.swift */; };
 		5D828ED92602C3D400B5B2FF /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */; };
+		5D828EDE2602D0D900B5B2FF /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */; };
+		5D828EDF2602D0D900B5B2FF /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPersonViewController.swift; sourceTree = "<group>"; };
 		5D828ED52602C02600B5B2FF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
+		5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,8 +165,8 @@
 		5D4238E42602513F00CAC274 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5D4238D426024FF200CAC274 /* LaunchScreen.storyboard */,
 				5D4238CC26024FF100CAC274 /* Main.storyboard */,
+				5D4238D426024FF200CAC274 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -179,9 +183,7 @@
 		5D4238E62602517D00CAC274 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5D17BF7A2602746700E2D827 /* Employee */,
-				5D17BF7B2602747D00E2D827 /* Management */,
-				5D17BF7C2602748F00E2D827 /* Accountant */,
+				5DBF1D1726035ED20079757E /* CoreDataModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +205,26 @@
 				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5D828EE12602D0E700B5B2FF /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */,
+				5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		5DBF1D1726035ED20079757E /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				5D828EE12602D0E700B5B2FF /* Person */,
+				5D17BF7A2602746700E2D827 /* Employee */,
+				5D17BF7B2602747D00E2D827 /* Management */,
+				5D17BF7C2602748F00E2D827 /* Accountant */,
+			);
+			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +300,7 @@
 			files = (
 				5D828ED62602C02600B5B2FF /* UIViewExtension.swift in Sources */,
 				5D828ED02602B8F000B5B2FF /* FileManagerExtension.swift in Sources */,
+				5D828EDF2602D0D900B5B2FF /* Person+CoreDataProperties.swift in Sources */,
 				5D17BF8C2602A42E00E2D827 /* Employee+CoreDataClass.swift in Sources */,
 				5D17BF8D2602A42E00E2D827 /* Employee+CoreDataProperties.swift in Sources */,
 				5D828EC92602AB3C00B5B2FF /* UIResponderExtension.swift in Sources */,
@@ -290,6 +313,7 @@
 				5D4238C726024FF100CAC274 /* AppDelegate.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
 				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
+				5D828EDE2602D0D900B5B2FF /* Person+CoreDataClass.swift in Sources */,
 				5D828ED92602C3D400B5B2FF /* UIStoryboardExtension.swift in Sources */,
 				5D17BF8F2602A42E00E2D827 /* Accountant+CoreDataProperties.swift in Sources */,
 			);
