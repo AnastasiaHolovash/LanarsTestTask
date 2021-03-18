@@ -260,8 +260,8 @@
 		5DBF1D2E2603EF160079757E /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */,
 				5DBF1D262603E7800079757E /* PageViewController.swift */,
+				5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";

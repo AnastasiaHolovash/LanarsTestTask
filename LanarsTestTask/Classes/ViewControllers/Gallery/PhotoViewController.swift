@@ -7,10 +7,10 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController {
-
+final class PhotoViewController: UIViewController {
+    
     // MARK: - Statics
-        
+    
     static func create(with image: UIImage) -> PhotoViewController {
         
         let viewController = UIStoryboard.main.instantiateViewController(identifier: PhotoViewController.identifier) as! PhotoViewController
@@ -32,11 +32,8 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = .clear
-        
         if let image = image {
             imageView.image = image
         }
     }
-
 }

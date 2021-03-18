@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNewPersonViewController: UIViewController {
+final class AddNewPersonViewController: UIViewController {
     
     // MARK: - Statics
     

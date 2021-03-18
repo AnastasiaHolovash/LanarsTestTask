@@ -417,19 +417,19 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="ynK-gh-Fb9"/>
-                                <exclude reference="LrD-fL-ixY"/>
                                 <exclude reference="6HB-KR-QnG"/>
+                                <exclude reference="LrD-fL-ixY"/>
+                                <exclude reference="ynK-gh-Fb9"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <include reference="ynK-gh-Fb9"/>
+                                <include reference="6HB-KR-QnG"/>
                                 <exclude reference="GPi-HN-ayP"/>
                                 <include reference="LrD-fL-ixY"/>
-                                <exclude reference="mKG-ZC-P3F"/>
                                 <exclude reference="hPH-8O-Eho"/>
-                                <include reference="6HB-KR-QnG"/>
+                                <exclude reference="mKG-ZC-P3F"/>
+                                <include reference="ynK-gh-Fb9"/>
                             </mask>
                         </variation>
                     </view>
