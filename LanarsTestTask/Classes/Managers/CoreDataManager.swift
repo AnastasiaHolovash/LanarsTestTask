@@ -81,7 +81,7 @@ class CoreDataManager {
     }
     
     func fetchManagement(completion:@escaping (Result<[Management], Error>) -> Void) {
-
+        
         let request: NSFetchRequest<Management> = Management.fetchRequest()
         request.includesSubentities = false
         
@@ -92,7 +92,7 @@ class CoreDataManager {
             debugPrint(error.localizedDescription)
             completion(.failure(error))
         }
-
+        
     }
     
     // MARK: Employee
@@ -119,6 +119,9 @@ class CoreDataManager {
     func fetchEmployee(completion:@escaping (Result<[Employee], Error>) -> Void) {
         
         let request: NSFetchRequest<Employee> = Employee.fetchRequest()
+        let sort = NSSortDescriptor(key: "id", ascending: true)
+        request.sortDescriptors = [sort]
+        
         request.includesSubentities = false
         
         do {
@@ -143,7 +146,7 @@ class CoreDataManager {
             let employee = try insertObject(type: Accountant.self, managedObjectContext: context) { employee in
                 
                 employee.setup(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType)
-
+                
             }
             
             try context.save()
@@ -168,25 +171,53 @@ class CoreDataManager {
         }
     }
     
-    func updateItemsOrder(from: Int, to: Int) {
-        
+    //    func updateItemsOrder(change: [(from: Int, to: Int)]) {
+    //
+    //        let context = persistentContainer.newBackgroundContext()
+    //        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
+    //
+    //        change.forEach { from, to in
+    //            request.predicate = NSPredicate(format: "id == \(from)")
+    //
+    //            do {
+    //                let results = try context.fetch(request)
+    //                if results.count != 0 {
+    //
+    //                    results[0].setValue(to, forKey: "id")
+    //                }
+    //            } catch {
+    //                print("Fetch Failed: \(error)")
+    //            }
+    //        }
+    //
+    //        do {
+    //            try context.save()
+    //        } catch {
+    //            print("Save Failed: \(error)")
+    //        }
+    //    }
+    
+    func change(employees: [Employee]) {
         let context = persistentContainer.newBackgroundContext()
         let request: NSFetchRequest<Employee> = Employee.fetchRequest()
-
-        request.predicate = from < to ? NSPredicate(format: "id >= \(from) AND id <= \(to)") : NSPredicate(format: "id >= \(to) AND id <= \(from)")
-
+        
         do {
-            let results = try context.fetch(request)
-            if results.count != 0 {
+            try context.fetch(request).forEach { context.delete($0) }
+            
+            for index in 0..<employees.count {
                 
-                results[0].setValue(0, forKey: "id")
+                let oldEmployee = employees[index]
+                try insertObject(type: Employee.self, managedObjectContext: context) { employee in
+                    
+                    employee.setup(id: index, name: oldEmployee.name ?? "", salary: Int(oldEmployee.salary), workplaceNumber: Int(oldEmployee.workplaceNumber), lunchTime: Int(oldEmployee.lunchTime))
+                }
+                
             }
+            
             try context.save()
         } catch {
-            print("Fetch Failed: \(error)")
+            print("Save Failed: \(error)")
         }
-
-
     }
     
 }

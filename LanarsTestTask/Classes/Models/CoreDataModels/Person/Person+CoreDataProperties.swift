@@ -21,6 +21,6 @@ extension Person {
     @NSManaged public var id: Int16
 }
 
-extension Person : Identifiable {
+extension Person: Identifiable {
 
 }

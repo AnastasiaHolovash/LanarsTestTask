@@ -29,6 +29,7 @@
 		5D828ED92602C3D400B5B2FF /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */; };
 		5D828EDE2602D0D900B5B2FF /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */; };
 		5D828EDF2602D0D900B5B2FF /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */; };
+		5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		5D828EDC2602D0D900B5B2FF /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5D828EDD2602D0D900B5B2FF /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				5D828ECF2602B8F000B5B2FF /* FileManagerExtension.swift */,
 				5D828ED52602C02600B5B2FF /* UIViewExtension.swift */,
 				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
+				5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */,
 				5D17BF912602A42E00E2D827 /* Management+CoreDataProperties.swift in Sources */,
 				5D4238C726024FF100CAC274 /* AppDelegate.swift in Sources */,
+				5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
 				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
 				5D828EDE2602D0D900B5B2FF /* Person+CoreDataClass.swift in Sources */,

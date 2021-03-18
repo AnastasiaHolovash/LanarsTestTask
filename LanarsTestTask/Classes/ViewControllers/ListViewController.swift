@@ -11,49 +11,36 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
     
     let coreDataManager = CoreDataManager.shared
     
-    private var management: [Management] = []
-    private var employees: [Employee] = []
-    private var accountant: [Accountant] = []
+    private var personsTableViewData = PersonsData(management: [], employees: [], accountant: [])
     
-    struct PersonsData {
+    private var isEditingMode: Bool = false {
         
-        var management: [Management] = []
-        var employees: [Employee] = []
-        var accountant: [Accountant] = []
-        
-        subscript(index: Int) -> [Person] {
-            get {
-                switch index {
-                case 0:
-                    return management
-                case 1:
-                    return employees
-                case 2:
-                    return accountant
-                default:
-                    return []
-                }
-            }
-            set {
-                switch index {
-                case 0:
-                    management = newValue as? [Management] ?? []
-                case 1:
-                    employees = newValue as? [Employee] ?? []
-                case 2:
-                    accountant = newValue as? [Accountant] ?? []
-                default:
-                    break
-                }
+        didSet {
+            if isEditingMode {
+                tableView.setEditing(true, animated: true);
+                
+                editButton.setTitle("Cancel", for: .normal)
+                editButton.setTitleColor(.systemRed, for: .normal)
+                
+                addButton.setImage(UIImage(), for: .normal)
+                addButton.setTitle("Done", for: .normal)
+                addButton.setTitleColor(.systemOrange, for: .normal)
+            
+            } else {
+                tableView.setEditing(false, animated: true);
+                
+                editButton.setTitle("Edit", for: .normal)
+                editButton.setTitleColor(.systemOrange, for: .normal)
+                
+                addButton.setImage(.plusImage, for: .normal)
+                addButton.setTitle("", for: .normal)
             }
         }
     }
-    
-    private var personsTableViewData = PersonsData(management: [], employees: [], accountant: [])
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +54,6 @@ class ListViewController: UIViewController {
             switch result {
             case .success(let ent):
                 ent.forEach { print($0) }
-                self?.management = ent
                 self?.personsTableViewData.management = ent
                 self?.tableView.reloadData()
                 
@@ -79,7 +65,6 @@ class ListViewController: UIViewController {
             switch result {
             case .success(let ent):
                 ent.forEach { print($0) }
-                self?.employees = ent
                 self?.personsTableViewData.employees = ent
                 self?.tableView.reloadData()
                 
@@ -91,7 +76,6 @@ class ListViewController: UIViewController {
             switch result {
             case .success(let ent):
                 ent.forEach { print($0) }
-                self?.accountant = ent
                 self?.personsTableViewData.accountant = ent
                 self?.tableView.reloadData()
                 
@@ -111,20 +95,36 @@ class ListViewController: UIViewController {
     
     @IBAction func editAction(_ sender: UIButton) {
         
+        // Set Not Editing
         if tableView.isEditing {
-            tableView.setEditing(false, animated: true);
-            editButton.setTitle("Edit", for: .normal)
+            
+            isEditingMode = false
+            if let dataBeforeEditing = PersonsData.savedStateBeforeEditing {
+                personsTableViewData = dataBeforeEditing
+                tableView.reloadData()
+            }
             
         } else {
-            tableView.setEditing(true, animated: true);
-            editButton.setTitle("Done", for: .normal)
+            
+            // Set Editing
+            isEditingMode = true
+            PersonsData.savedStateBeforeEditing = personsTableViewData
         }
     }
     
     @IBAction func addAction(_ sender: UIButton) {
         
-        let viewController = AddNewPersonViewController.create()
-        navigationController?.pushViewController(viewController, animated: true)
+        // When Editing
+        if tableView.isEditing {
+            isEditingMode = false
+            coreDataManager.change(employees: personsTableViewData.employees)
+        
+        } else {
+            
+            // When Not Editing
+            let viewController = AddNewPersonViewController.create()
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
 }
@@ -209,3 +209,60 @@ extension ListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - PersonsData
+
+extension ListViewController {
+    
+    struct PersonsData {
+        
+        static var savedStateBeforeEditing: Self?
+        
+        var management: [Management] = []
+        var employees: [Employee] = []
+        var accountant: [Accountant] = []
+        
+        subscript(index: Int) -> [Person] {
+            get {
+                switch index {
+                case 0:
+                    return management
+                case 1:
+                    return employees
+                case 2:
+                    return accountant
+                default:
+                    return []
+                }
+            }
+            set {
+                switch index {
+                case 0:
+                    management = newValue as? [Management] ?? []
+                case 1:
+                    employees = newValue as? [Employee] ?? []
+                case 2:
+                    accountant = newValue as? [Accountant] ?? []
+                default:
+                    break
+                }
+            }
+        }
+        
+    }
+    
+    func compare(personsBefore: [Person], personsAfter: [Person]) -> [(Int, Int)] {
+        
+        var result: [(Int, Int)] = []
+        
+        for oldIndex in 0..<personsBefore.count {
+            let oldPerson = personsBefore[oldIndex]
+            if let newIndex: Int = personsAfter.firstIndex(of: oldPerson) {
+                result.append((oldIndex, newIndex))
+
+            } else {
+                result.append((oldIndex, -1))
+            }
+        }
+        return result
+    }
+}

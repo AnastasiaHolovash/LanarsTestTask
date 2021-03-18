@@ -50,9 +50,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j5y-Kd-Ehz">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="K4D-qf-xwj">
+                        <barButtonItem key="leftBarButtonItem" width="60" style="plain" id="K4D-qf-xwj">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6gJ-c2-XWn">
-                                <rect key="frame" x="20" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="20" y="0.0" width="60" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit">
                                     <color key="titleColor" name="AccentColor"/>
@@ -64,7 +64,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="RZj-xd-gEf">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9aE-GA-lYU">
-                                <rect key="frame" x="350" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="344" y="0.0" width="50" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal">
@@ -77,7 +77,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="6gJ-c2-XWn" id="Tqh-lc-Err"/>
+                        <outlet property="addButton" destination="9aE-GA-lYU" id="TuW-Id-pcg"/>
+                        <outlet property="editButton" destination="6gJ-c2-XWn" id="b1L-W4-vul"/>
                         <outlet property="tableView" destination="N0c-Q3-myR" id="ikN-Yw-wfM"/>
                     </connections>
                 </viewController>
