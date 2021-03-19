@@ -287,4 +287,20 @@ extension AddNewPersonViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField {
+        case salaryTextField, receptionHoursTextField, workplaceNumberTextField:
+            let invalidChars = CharacterSet.decimalDigits.inverted
+            
+            guard string.rangeOfCharacter(from: invalidChars) == nil else {
+                return false
+            }
+        default:
+            return true
+        }
+        
+        return true
+    }
 }
