@@ -25,7 +25,7 @@ final class AddNewPersonViewController: UIViewController {
     static func create(person: Person) -> AddNewPersonViewController {
         
         let viewController = UIStoryboard.main.instantiateViewController(identifier: self.identifier) as! AddNewPersonViewController
-
+        
         viewController.person = person
         viewController.style = .edit
         
@@ -34,7 +34,9 @@ final class AddNewPersonViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var personTypeSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var salaryTextField: UITextField!
     @IBOutlet weak var receptionHoursTextField: UITextField!
@@ -48,16 +50,23 @@ final class AddNewPersonViewController: UIViewController {
     @IBOutlet weak var lunchTimeStackView: UIStackView!
     @IBOutlet weak var accountantTypeStackView: UIStackView!
     
+    // MARK: - Private properties
+    
     private let coreDataManager = CoreDataManager.shared
     private var personType: PersonType = .management
     private var person: Person?
     private var style: AddNewPersonViewControllerStyle = .create
+    private var keyboardHandler: KeyboardEventsHandler!
+    
+    // MARK: - Nested types
     
     enum AddNewPersonViewControllerStyle {
         
         case create
         case edit
     }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +76,20 @@ final class AddNewPersonViewController: UIViewController {
         }
         
         updateState(animated: false)
+        keyboardSetup()
     }
+    
+    private func keyboardSetup() {
+        
+        keyboardHandler = KeyboardEventsHandler(forView: view, scroll: scrollView)
+        nameTextField.delegate = self
+        salaryTextField.delegate = self
+        receptionHoursTextField.delegate = self
+        workplaceNumberTextField.delegate = self
+        lunchTimeTextField.delegate = self
+    }
+    
+    // MARK: - IBActions
     
     @IBAction func personTypeAction(_ sender: UISegmentedControl) {
         
@@ -90,12 +112,19 @@ final class AddNewPersonViewController: UIViewController {
         
         case .create:
             createPerson()
-
+            
         case .edit:
             editPerson()
         }
         navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
+        
+        UIApplication.hideKeyboard()
+    }
+    
+    // MARK: - Private funcs
     
     private func updateState(animated: Bool = true) {
         
@@ -110,20 +139,20 @@ final class AddNewPersonViewController: UIViewController {
         
         nameTextField.text = person.name
         salaryTextField.text = String(person.salary)
-
+        
         if let management = person as? Management {
-
+            
             receptionHoursTextField.text = String(management.receptionHours)
             personType = .management
         }
-
+        
         if let employee = person as? Employee {
-
+            
             workplaceNumberTextField.text = String(employee.workplaceNumber)
             lunchTimeTextField.text = String(employee.lunchTime)
             
             personType = .employee
-
+            
             if let accountant = employee as? Accountant {
                 
                 accountantTypeSegmentedControl.selectedSegmentIndex = accountant.accountantType == Accountant.AccountantType.payroll.rawValue ? 0 : 1
@@ -158,9 +187,6 @@ final class AddNewPersonViewController: UIViewController {
                 self.createPerson(for: previousPersonType == self.personType ? id : nil)
             }
         }
-        //        coreDataManager.delete(object: previousPersonType.personSelf, id: id) { _ in
-        //            self.createPerson(for: previousPersonType == self.personType ? id : nil)
-        //        }
     }
     
     private func createPerson(for id: Int? = nil) {
@@ -205,5 +231,30 @@ final class AddNewPersonViewController: UIViewController {
                 }
             }
         }
+    }
+}
+
+extension AddNewPersonViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == nameTextField {
+            salaryTextField.becomeFirstResponder()
+            
+        } else if textField == salaryTextField {
+            _ = personType == .management
+                ? receptionHoursTextField.becomeFirstResponder()
+                : workplaceNumberTextField.becomeFirstResponder()
+            
+        } else if textField == receptionHoursTextField {
+            textField.resignFirstResponder()
+            
+        } else if textField == workplaceNumberTextField {
+            lunchTimeTextField.becomeFirstResponder()
+            
+        } else if textField == lunchTimeTextField {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }

@@ -11,11 +11,11 @@ final class PhotoViewController: UIViewController {
     
     // MARK: - Statics
     
-    static func create(with image: UIImage) -> PhotoViewController {
+    static func create(with image: UIImage, index: Int) -> PhotoViewController {
         
         let viewController = UIStoryboard.main.instantiateViewController(identifier: PhotoViewController.identifier) as! PhotoViewController
         viewController.image = image
-        
+        viewController.index = index
         return viewController
     }
     
@@ -26,6 +26,7 @@ final class PhotoViewController: UIViewController {
     // MARK: - Public Variables
     
     public var image: UIImage?
+    public var index: Int = 0
     
     // MARK: - Life cycle
     

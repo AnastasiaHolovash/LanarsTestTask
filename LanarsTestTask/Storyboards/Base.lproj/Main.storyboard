@@ -37,6 +37,10 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="backwardButton" destination="OXL-xu-EET" id="jyM-UR-A5D"/>
+                        <outlet property="forwardButton" destination="V60-QV-uum" id="XYF-il-70d"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHX-60-apD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -322,11 +326,17 @@
                         <outlet property="receptionHoursTextField" destination="2Fr-6Y-hsa" id="NlZ-G8-hKE"/>
                         <outlet property="salaryStackView" destination="PMF-gl-ejP" id="w9w-zQ-w5g"/>
                         <outlet property="salaryTextField" destination="Jz3-8y-cpa" id="Qq9-RZ-AF9"/>
+                        <outlet property="scrollView" destination="lzw-c8-356" id="DNW-xa-ib8"/>
                         <outlet property="workplaceNumberStackView" destination="m4x-Aw-v6D" id="Mmo-En-snA"/>
                         <outlet property="workplaceNumberTextField" destination="2kc-8u-w9r" id="cdg-gs-52l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Law-or-xZt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="eV7-iN-M1q">
+                    <connections>
+                        <action selector="didTapOnScreen:" destination="Soi-hg-JJI" id="4Uu-KL-Qc9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="413" y="1573"/>
         </scene>
