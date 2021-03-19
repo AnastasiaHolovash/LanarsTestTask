@@ -122,13 +122,19 @@ final class ListViewController: UIViewController {
         
         // When Editing
         if tableView.isEditing {
+            
+            if coreDataManager.isEdited == false {
+                coreDataManager.isEdited = true
+            }
             isEditingMode = false
             
             coreDataManager.updateAll(personsTableViewData: personsTableViewData.allData) { [weak self] result in
                 switch result {
                 
-                case .success:
-                    
+                case .success(let data):
+                    self?.personsTableViewData.management = data.management
+                    self?.personsTableViewData.employees = data.employee
+                    self?.personsTableViewData.accountant = data.accountant
                     self?.applySnapshot(animated: false)
                     
                 case .failure(let error):

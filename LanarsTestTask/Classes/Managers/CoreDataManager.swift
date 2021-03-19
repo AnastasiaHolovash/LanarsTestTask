@@ -14,9 +14,20 @@ final class CoreDataManager {
     
     typealias AllData = ListViewController.PersonsTableViewData.AllData
     
-    enum sortBy {
+    // MARK: - Nested type
+    
+    enum SortBy: RawRepresentable {
+        
         case id
         case name
+        
+        typealias RawValue = Bool
+        var rawValue: RawValue {
+            return self == .id ? true : false
+        }
+        init?(rawValue: RawValue) {
+            self = rawValue == true ? .id : .name
+        }
     }
     
     // MARK: - Statics
@@ -29,6 +40,14 @@ final class CoreDataManager {
     private let persistentContainer: NSPersistentContainer
     private var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
+    }
+    var isEdited: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "isEdited")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isEdited")
+        }
     }
     
     // MARK: - Lifecycle
@@ -126,10 +145,17 @@ final class CoreDataManager {
     
     // MARK: - Read
     
-    func read<ManagedObject: NSManagedObject>(object: ManagedObject.Type, completion: @escaping (Result<[ManagedObject], Error>) -> Void) {
+    func read<ManagedObject: NSManagedObject>(object: ManagedObject.Type, sortBy: SortBy, completion: @escaping (Result<[ManagedObject], Error>) -> Void) {
         
         let request: NSFetchRequest<ManagedObject> = ManagedObject.fetchRequest()
-        let sort = NSSortDescriptor(key: "id", ascending: true)
+        
+        let sort: NSSortDescriptor
+        switch sortBy {
+        case .id:
+            sort = NSSortDescriptor(key: "id", ascending: true)
+        case .name:
+            sort = NSSortDescriptor(key: "name", ascending: true)
+        }
         request.sortDescriptors = [sort]
         request.includesSubentities = false
         
@@ -145,13 +171,13 @@ final class CoreDataManager {
     func readAll(completion: @escaping (Result<AllData, Error>) -> Void) {
         
         let group = DispatchGroup()
-        
         var allData: AllData = ([], [], [])
+        let sortBy: SortBy = SortBy(rawValue: isEdited) ?? .name
         
         DispatchQueue.global(qos: .background).async(group: group) {
             
             group.enter()
-            self.read(object: Management.self) { result in
+            self.read(object: Management.self, sortBy: sortBy) { result in
                 switch result {
                 case .success(let ent):
                     allData.management = ent
@@ -162,7 +188,7 @@ final class CoreDataManager {
             }
             
             group.enter()
-            self.read(object: Employee.self) { result in
+            self.read(object: Employee.self, sortBy: sortBy) { result in
                 switch result {
                 case .success(let ent):
                     allData.employee = ent
@@ -173,7 +199,7 @@ final class CoreDataManager {
             }
             
             group.enter()
-            self.read(object: Accountant.self) { result in
+            self.read(object: Accountant.self, sortBy: sortBy) { result in
                 switch result {
                 case .success(let ent):
                     allData.accountant = ent
@@ -238,27 +264,46 @@ final class CoreDataManager {
         }
     }
     
-    func updateAll(personsTableViewData: AllData, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func updateAll(personsTableViewData: AllData, completion: @escaping (Result<AllData, Error>) -> Void) {
         
         let group = DispatchGroup()
-        
+        var allData: AllData = ([], [], [])
+
         DispatchQueue.global(qos: .background).async(group: group) {
             
             group.enter()
-            self.update(object: Management.self, with: personsTableViewData.management) { _ in
+            self.update(object: Management.self, with: personsTableViewData.management) { result in
+                switch result {
+                case .success(let ent):
+                    allData.management = ent
+                case .failure(let error):
+                    completion(.failure(error))
+                }
                 group.leave()
             }
             group.enter()
-            self.update(object: Employee.self, with: personsTableViewData.employee) { _ in
+            self.update(object: Employee.self, with: personsTableViewData.employee) { result in
+                switch result {
+                case .success(let ent):
+                    allData.employee = ent
+                case .failure(let error):
+                    completion(.failure(error))
+                }
                 group.leave()
             }
             group.enter()
-            self.update(object: Accountant.self, with: personsTableViewData.accountant) { _ in
+            self.update(object: Accountant.self, with: personsTableViewData.accountant) { result in
+                switch result {
+                case .success(let ent):
+                    allData.accountant = ent
+                case .failure(let error):
+                    completion(.failure(error))
+                }
                 group.leave()
             }
         }
         group.notify(queue: DispatchQueue.main) {
-            completion(.success(true))
+            completion(.success(allData))
         }
     }
     
