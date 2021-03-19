@@ -178,12 +178,12 @@ final class AddNewPersonViewController: UIViewController {
             coreDataManager.delete(object: Management.self, id: id) { _ in
                 self.createPerson(for: previousPersonType == self.personType ? id : nil)
             }
-        case .employee:
-            coreDataManager.delete(object: Employee.self, id: id) { _ in
-                self.createPerson(for: previousPersonType == self.personType ? id : nil)
-            }
         case .accountant:
             coreDataManager.delete(object: Accountant.self, id: id) { _ in
+                self.createPerson(for: previousPersonType == self.personType ? id : nil)
+            }
+        case .employee:
+            coreDataManager.delete(object: Employee.self, id: id) { _ in
                 self.createPerson(for: previousPersonType == self.personType ? id : nil)
             }
         }
@@ -233,6 +233,8 @@ final class AddNewPersonViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension AddNewPersonViewController: UITextFieldDelegate {
     

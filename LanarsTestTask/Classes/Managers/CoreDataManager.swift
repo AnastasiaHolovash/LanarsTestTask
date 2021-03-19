@@ -10,11 +10,19 @@ import Foundation
 
 final class CoreDataManager {
     
+    // MARK: - Typealias
+    
     typealias AllData = ListViewController.PersonsTableViewData.AllData
+    
+    enum sortBy {
+        case id
+        case name
+    }
+    
     // MARK: - Statics
     
     static let shared = CoreDataManager()
-        
+    
     // MARK: - Private properties
     
     private let modelName = "LanarsTestTask"
@@ -54,6 +62,7 @@ final class CoreDataManager {
         create(object: Employee.self, id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, receptionHours: 0, lunchTime: lunchTime, accountantType: .payroll, completion: completion)
     }
     
+    // MARK: Accountant
     
     func createAccountant(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: Accountant.AccountantType, completion:@escaping (Result<Accountant, Error>) -> Void) {
         
@@ -63,14 +72,14 @@ final class CoreDataManager {
     // MARK: - Create
     
     private func create<ManagedObject: NSManagedObject>(object: ManagedObject.Type,
-                                                 id: Int?,
-                                                 name: String,
-                                                 salary: Int,
-                                                 workplaceNumber: Int,
-                                                 receptionHours: Int,
-                                                 lunchTime: Int,
-                                                 accountantType: Accountant.AccountantType,
-                                                 completion:@escaping (Result<ManagedObject, Error>) -> Void) {
+                                                        id: Int?,
+                                                        name: String,
+                                                        salary: Int,
+                                                        workplaceNumber: Int,
+                                                        receptionHours: Int,
+                                                        lunchTime: Int,
+                                                        accountantType: Accountant.AccountantType,
+                                                        completion:@escaping (Result<ManagedObject, Error>) -> Void) {
         
         
         let context = persistentContainer.newBackgroundContext()
@@ -96,7 +105,7 @@ final class CoreDataManager {
                                      workplaceNumber: Int(workplaceNumber),
                                      lunchTime: Int(lunchTime),
                                      accountantType: accountantType)
-                
+                    
                 } else if let employee = object as? Employee {
                     
                     employee.setup(id: newId,
@@ -274,9 +283,7 @@ final class CoreDataManager {
     }
     
     @discardableResult
-    private func insertObject<ManagedObject: NSManagedObject>(type: ManagedObject.Type,
-                                                              managedObjectContext: NSManagedObjectContext,
-                                                              configuration: (ManagedObject) -> Void) throws -> ManagedObject {
+    private func insertObject<ManagedObject: NSManagedObject>(type: ManagedObject.Type, managedObjectContext: NSManagedObjectContext, configuration: (ManagedObject) -> Void) throws -> ManagedObject {
         
         let entity = ManagedObject.entity()
         let object: ManagedObject = ManagedObject(entity: entity, insertInto: managedObjectContext)

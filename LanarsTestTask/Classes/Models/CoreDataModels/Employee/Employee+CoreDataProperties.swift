@@ -14,5 +14,4 @@ extension Employee {
 
     @NSManaged public var lunchTime: Int16
     @NSManaged public var workplaceNumber: Int16
-
 }

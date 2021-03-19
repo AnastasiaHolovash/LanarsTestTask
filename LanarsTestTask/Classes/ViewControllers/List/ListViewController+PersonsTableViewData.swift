@@ -13,13 +13,24 @@ extension ListViewController {
     
     struct PersonsTableViewData {
         
+        // MARK: - Typealias
+        
         typealias AllData = (management: [Management], employee: [Employee], accountant: [Accountant])
         
+        // MARK: - Statics
+        
         static var savedStateBeforeEditing: Self?
+        
+        // MARK: - Variables
         
         var management: [Management] = []
         var employees: [Employee] = []
         var accountant: [Accountant] = []
+        var allData: AllData {
+            return (management: management, employee: employees, accountant: accountant)
+        }
+        
+        // MARK: - Subscript
         
         subscript(index: Int) -> [Person] {
             get {
@@ -48,9 +59,44 @@ extension ListViewController {
             }
         }
         
-        var allData: AllData {
-            return (management: management, employee: employees, accountant: accountant)
+        // MARK: - Funcs
+        
+        mutating func removeItem(_ item: Person) {
+            
+            switch item {
+            case is Management:
+                management.removeAll { $0.id == item.id }
+                
+            case is Accountant:
+                accountant.removeAll { $0.id == item.id }
+                
+            case is Employee:
+                employees.removeAll { $0.id == item.id }
+                
+            default:
+                break
+            }
         }
         
+        mutating func insertItem(_ item: Person, at indexPath: IndexPath) {
+            
+            switch PersonType(rawValue: indexPath.section) {
+            
+            case .management:
+                if let item = item as? Management {
+                    management.insert(item, at: indexPath.row)
+                }
+            case .accountant:
+                if let item = item as? Accountant {
+                    accountant.insert(item, at: indexPath.row)
+                }
+            case .employee:
+                if let item = item as? Employee {
+                    employees.insert(item, at: indexPath.row)
+                }
+            case .none:
+                break
+            }
+        }
     }
 }

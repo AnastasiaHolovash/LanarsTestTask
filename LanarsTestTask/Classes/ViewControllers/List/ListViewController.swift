@@ -28,17 +28,16 @@ final class ListViewController: UIViewController {
                 tableView.setEditing(true, animated: true);
                 
                 editButton.setTitle("Cancel", for: .normal)
-                editButton.setTitleColor(.systemRed, for: .normal)
                 
                 addButton.setImage(UIImage(), for: .normal)
                 addButton.setTitle("Done", for: .normal)
-                addButton.setTitleColor(.systemOrange, for: .normal)
+                addButton.setTitleColor(.link, for: .normal)
                 
             } else {
                 tableView.setEditing(false, animated: true);
                 
                 editButton.setTitle("Edit", for: .normal)
-                editButton.setTitleColor(.systemOrange, for: .normal)
+                editButton.setTitleColor(.link, for: .normal)
                 
                 addButton.setImage(.plusImage, for: .normal)
                 addButton.setTitle("", for: .normal)
@@ -86,16 +85,15 @@ final class ListViewController: UIViewController {
         }
         
         dataSource.didDeleteItem = { [weak self] item, indexPath in
-            
-            self?.personsTableViewData[indexPath.section].remove(at: indexPath.row)
+            self?.personsTableViewData.removeItem(item)
         }
         
-        dataSource.didMoveItem = { [weak self] sourceIndexPath, destinationIndexPath in
+        dataSource.didMoveItem = { [weak self] item, destinationIndexPath in
             guard let self = self else {
                 return
             }
-            let sourceItem = self.personsTableViewData[sourceIndexPath.section].remove(at: sourceIndexPath.row)
-            self.personsTableViewData[destinationIndexPath.section].insert(sourceItem, at: destinationIndexPath.row)
+            self.personsTableViewData.removeItem(item)
+            self.personsTableViewData.insertItem(item, at: destinationIndexPath)
             self.applySnapshot()
         }
     }
@@ -136,30 +134,7 @@ final class ListViewController: UIViewController {
                 case .failure(let error):
                     print(error)
                 }
-
             }
-            
-//            let group = DispatchGroup()
-//
-//            DispatchQueue.global(qos: .background).async(group: group) {
-//
-//                group.enter()
-//                self.coreDataManager.update(object: Management.self, with: self.personsTableViewData.management) { _ in
-//                    group.leave()
-//                }
-//                group.enter()
-//                self.coreDataManager.update(object: Employee.self, with: self.personsTableViewData.employees) { _ in
-//                    group.leave()
-//                }
-//                group.enter()
-//                self.coreDataManager.update(object: Accountant.self, with: self.personsTableViewData.accountant) { _ in
-//                    group.leave()
-//                }
-//            }
-//            group.notify(queue: DispatchQueue.main) { [weak self] in
-//                self?.tableView.reloadData()
-//            }
-            
         } else {
             
             // When Not Editing
@@ -181,7 +156,6 @@ final class ListViewController: UIViewController {
         
         dataSource.apply(newSnapshot, animatingDifferences: animated)
     }
-    
 }
 
 // MARK: - UITableViewDelegate

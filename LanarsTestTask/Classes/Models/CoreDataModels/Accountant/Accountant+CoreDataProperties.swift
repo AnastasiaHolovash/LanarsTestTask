@@ -13,5 +13,4 @@ import CoreData
 extension Accountant {
 
     @NSManaged public var accountantType: String
-
 }

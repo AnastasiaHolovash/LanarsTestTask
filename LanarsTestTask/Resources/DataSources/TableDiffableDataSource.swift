@@ -12,7 +12,9 @@ final class TableDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentif
     // MARK: - Closure properties
     
     var didDeleteItem: ((ItemIdentifierType, IndexPath) -> Void)?
-    var didMoveItem: ((IndexPath, IndexPath) -> Void)?
+    var didMoveItem: ((ItemIdentifierType, IndexPath) -> Void)?
+    
+    // MARK: - Func
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
@@ -25,9 +27,11 @@ final class TableDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentif
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        didMoveItem?(sourceIndexPath, destinationIndexPath)
+        
+        if let model = itemIdentifier(for: sourceIndexPath) {
+            didMoveItem?(model, destinationIndexPath)
+        }
     }
-
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -37,7 +41,7 @@ final class TableDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentif
             var snapshot = self.snapshot()
             snapshot.deleteItems([model])
             didDeleteItem?(model, indexPath)
-
+            
             apply(snapshot)
         }
     }

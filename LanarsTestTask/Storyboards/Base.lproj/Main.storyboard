@@ -44,7 +44,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHX-60-apD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1600" y="846"/>
+            <point key="canvasLocation" x="593" y="1573"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -74,7 +74,7 @@
                                 <rect key="frame" x="20" y="0.0" width="60" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit">
-                                    <color key="titleColor" name="AccentColor"/>
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <connections>
                                     <action selector="editAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="upF-l3-f8m"/>
@@ -85,7 +85,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9aE-GA-lYU">
                                 <rect key="frame" x="344" y="0.0" width="50" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" systemColor="linkColor"/>
                                 <state key="normal">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                 </state>
@@ -338,7 +338,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="413" y="1573"/>
+            <point key="canvasLocation" x="-1230" y="1573"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zsC-5Z-Lbq">
@@ -447,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XR9-Me-B5o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2488" y="846"/>
+            <point key="canvasLocation" x="1446" y="1573"/>
         </scene>
     </scenes>
     <resources>
@@ -461,6 +461,9 @@
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

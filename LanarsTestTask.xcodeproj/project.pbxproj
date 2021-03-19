@@ -173,12 +173,12 @@
 		5D4238E3260250FA00CAC274 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5D17BF7E2602982A00E2D827 /* Views */,
+				5D828EC72602AB2300B5B2FF /* Extensions */,
+				5DBF1D252603E70F0079757E /* DataSources */,
 				5D4238D726024FF200CAC274 /* Info.plist */,
 				5D4238CF26024FF100CAC274 /* LanarsTestTask.xcdatamodeld */,
 				5D4238D226024FF200CAC274 /* Assets.xcassets */,
-				5DBF1D252603E70F0079757E /* DataSources */,
-				5D17BF7E2602982A00E2D827 /* Views */,
-				5D828EC72602AB2300B5B2FF /* Extensions */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

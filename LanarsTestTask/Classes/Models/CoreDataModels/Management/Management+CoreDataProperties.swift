@@ -13,5 +13,4 @@ import CoreData
 extension Management {
 
     @NSManaged public var receptionHours: Int16
-
 }

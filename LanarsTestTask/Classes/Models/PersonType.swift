@@ -49,6 +49,17 @@ enum PersonType: Int {
         }
     }
     
+    var personSelf: Person.Type {
+        switch self {
+        case .accountant:
+            return Accountant.self
+        case .management:
+            return Management.self
+        case .employee:
+            return Employee.self
+        }
+    }
+    
     static func getType(from person: Person) -> Self {
         switch person {
         case is Management:
@@ -59,17 +70,6 @@ enum PersonType: Int {
             return .employee
         default:
             return .employee
-        }
-    }
-    
-    var personSelf: Person.Type {
-        switch self {
-        case .accountant:
-            return Accountant.self
-        case .management:
-            return Management.self
-        case .employee:
-            return Employee.self
         }
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 final class PersonTableViewCell: UITableViewCell {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var salaryLabel: UILabel!
@@ -16,6 +18,8 @@ final class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var workplaceNumberLabel: UILabel!
     @IBOutlet weak var lunchTimeLabel: UILabel!
     @IBOutlet weak var accountantTypeLabel: UILabel!
+    
+    // MARK: - Public funcs
     
     public func setup(person: Person) {
         
@@ -44,6 +48,8 @@ final class PersonTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    // MARK: - Private funcs
     
     private func hideAllOptionalLabels() {
         
