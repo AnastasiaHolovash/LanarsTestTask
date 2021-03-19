@@ -36,6 +36,7 @@
 		5DBF1D2B2603E79C0079757E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */; };
 		5DBF1D3226041E420079757E /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3126041E420079757E /* PersonType.swift */; };
 		5DBF1D35260420080079757E /* ListViewController+PersonsTableViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D34260420080079757E /* ListViewController+PersonsTableViewData.swift */; };
+		5DBF1D3926042F830079757E /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3826042F830079757E /* UILabelExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		5DBF1D3126041E420079757E /* PersonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonType.swift; sourceTree = "<group>"; };
 		5DBF1D34260420080079757E /* ListViewController+PersonsTableViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+PersonsTableViewData.swift"; sourceTree = "<group>"; };
+		5DBF1D3826042F830079757E /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
 				5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */,
 				5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */,
+				5DBF1D3826042F830079757E /* UILabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				5D17BF8E2602A42E00E2D827 /* Accountant+CoreDataClass.swift in Sources */,
 				5DBF1D35260420080079757E /* ListViewController+PersonsTableViewData.swift in Sources */,
 				5D4238CB26024FF100CAC274 /* ListViewController.swift in Sources */,
+				5DBF1D3926042F830079757E /* UILabelExtension.swift in Sources */,
 				5D17BF902602A42E00E2D827 /* Management+CoreDataClass.swift in Sources */,
 				5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */,
 				5D17BF912602A42E00E2D827 /* Management+CoreDataProperties.swift in Sources */,
