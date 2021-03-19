@@ -7,23 +7,22 @@
 
 import UIKit
 
-public class KeyboardEventsHandler: NSObject {
+public final class KeyboardEventsHandler: NSObject {
+    
+    // MARK: - Private properties
     
     private weak var animatedView: UIView!
     private var scrollView: UIScrollView!
     private var keyboardIsPresent: Bool = false
     private var keyboardHeight: CGFloat = 0.0
     
-    public var isEnabled = true
+    // MARK: - Public properties
     
+    public var isEnabled = true
     public var completion: ((Bool, CGFloat) -> Void)?
     
-/** Convenience init
+    // MARK: - Lifecycle
     
-- Parameters:
-    - forView: super view
-    - scroll: scroll view the size of which must be changed
-*/
     public convenience init(forView: UIView, scroll: UIScrollView) {
         self.init()
         
@@ -43,17 +42,19 @@ public class KeyboardEventsHandler: NSObject {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: - Handlers
+    
     private func handleConstraint(with notification: NSNotification) {
         
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
+        
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
         let keyboardViewEndFrame = animatedView?.convert(keyboardScreenEndFrame, from: animatedView?.window)
-
+        
         if keyboardViewEndFrame!.minY < scrollView.frame.maxY {
             scrollView.contentInset = scrollView.frame.maxY == animatedView?.frame.maxY ? UIEdgeInsets(top: 0, left: 0, bottom: scrollView.frame.maxY - keyboardViewEndFrame!.minY - animatedView!.safeAreaInsets.bottom, right: 0) : UIEdgeInsets(top: 0, left: 0, bottom: scrollView.frame.maxY - keyboardViewEndFrame!.minY, right: 0)
         }
-
+        
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class AddNewPersonViewController: UIViewController {
     
     // MARK: - Statics
@@ -15,7 +14,7 @@ final class AddNewPersonViewController: UIViewController {
     /// Create blank VC
     static func create() -> AddNewPersonViewController {
         
-        let viewController = UIStoryboard.main.instantiateViewController(identifier: self.identifier) as! AddNewPersonViewController
+        let viewController = UIStoryboard.main.instantiateViewController(identifier: identifier) as! AddNewPersonViewController
         
         viewController.style = .create
         return viewController
@@ -24,7 +23,7 @@ final class AddNewPersonViewController: UIViewController {
     /// Create VC with person
     static func create(person: Person) -> AddNewPersonViewController {
         
-        let viewController = UIStoryboard.main.instantiateViewController(identifier: self.identifier) as! AddNewPersonViewController
+        let viewController = UIStoryboard.main.instantiateViewController(identifier: identifier) as! AddNewPersonViewController
         
         viewController.person = person
         viewController.style = .edit
@@ -75,7 +74,7 @@ final class AddNewPersonViewController: UIViewController {
             setup(person)
         }
         
-        updateState(animated: false)
+        updatePersonType(animated: false)
         keyboardSetup()
     }
     
@@ -103,7 +102,7 @@ final class AddNewPersonViewController: UIViewController {
         default:
             break
         }
-        updateState()
+        updatePersonType()
     }
     
     @IBAction func saveAction(_ sender: UIButton) {
@@ -124,9 +123,9 @@ final class AddNewPersonViewController: UIViewController {
         UIApplication.hideKeyboard()
     }
     
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
-    private func updateState(animated: Bool = true) {
+    private func updatePersonType(animated: Bool = true) {
         
         personTypeSegmentedControl.selectedSegmentIndex = personType.rawValue
         receptionHoursStackView.isHiddenInStackView(!personType.isHasReceptionHours, animated: animated)
@@ -137,13 +136,13 @@ final class AddNewPersonViewController: UIViewController {
     
     private func setup(_ person: Person) {
         
+        personType = PersonType.getType(from: person)
         nameTextField.text = person.name
         salaryTextField.text = String(person.salary)
         
         if let management = person as? Management {
             
             receptionHoursTextField.text = String(management.receptionHours)
-            personType = .management
         }
         
         if let employee = person as? Employee {
@@ -151,13 +150,9 @@ final class AddNewPersonViewController: UIViewController {
             workplaceNumberTextField.text = String(employee.workplaceNumber)
             lunchTimeTextField.text = String(employee.lunchTime)
             
-            personType = .employee
-            
             if let accountant = employee as? Accountant {
                 
                 accountantTypeSegmentedControl.selectedSegmentIndex = accountant.accountantType == Accountant.AccountantType.payroll.rawValue ? 0 : 1
-                
-                personType = .accountant
             }
         }
     }
@@ -190,8 +185,8 @@ final class AddNewPersonViewController: UIViewController {
     }
     
     private func createPerson(for id: Int? = nil) {
-        
-        let name = nameTextField.text ?? "Name"
+        let nameString = nameTextField.text ?? "Name"
+        let name = nameString.isEmpty ? "Name" : nameString
         let salary = Int(salaryTextField.text ?? "") ?? 0
         let receptionHours = Int(receptionHoursTextField.text ?? "") ?? 0
         let workplaceNumber = Int(workplaceNumberTextField.text ?? "") ?? 0

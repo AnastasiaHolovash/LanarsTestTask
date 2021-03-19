@@ -19,7 +19,7 @@ final class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var lunchTimeLabel: UILabel!
     @IBOutlet weak var accountantTypeLabel: UILabel!
     
-    // MARK: - Public funcs
+    // MARK: - Public functions
     
     public func setup(person: Person) {
         
@@ -49,7 +49,7 @@ final class PersonTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: - Private funcs
+    // MARK: - Private functions
     
     private func hideAllOptionalLabels() {
         

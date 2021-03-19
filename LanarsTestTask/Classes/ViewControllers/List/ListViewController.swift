@@ -12,8 +12,8 @@ final class ListViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
     
     // MARK: - Private properties
     
@@ -22,26 +22,8 @@ final class ListViewController: UIViewController {
     private var personsTableViewData = PersonsTableViewData(management: [], employees: [], accountant: [])
     
     private var isEditingMode: Bool = false {
-        
         didSet {
-            if isEditingMode {
-                tableView.setEditing(true, animated: true);
-                
-                editButton.setTitle("Cancel", for: .normal)
-                
-                addButton.setImage(UIImage(), for: .normal)
-                addButton.setTitle("Done", for: .normal)
-                addButton.setTitleColor(.link, for: .normal)
-                
-            } else {
-                tableView.setEditing(false, animated: true);
-                
-                editButton.setTitle("Edit", for: .normal)
-                editButton.setTitleColor(.link, for: .normal)
-                
-                addButton.setImage(.plusImage, for: .normal)
-                addButton.setTitle("", for: .normal)
-            }
+            updateEditing()
         }
     }
     
@@ -71,6 +53,8 @@ final class ListViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup functions
+    
     private func tableViewSetup() {
         
         tableView.delegate = self
@@ -98,14 +82,35 @@ final class ListViewController: UIViewController {
         }
     }
     
+    private func updateEditing() {
+        
+        if isEditingMode {
+            tableView.setEditing(true, animated: true)
+            
+            leftButton.setTitle("Cancel", for: .normal)
+            
+            rightButton.setImage(UIImage(), for: .normal)
+            rightButton.setTitle("Done", for: .normal)
+            rightButton.setTitleColor(.link, for: .normal)
+            
+        } else {
+            tableView.setEditing(false, animated: true)
+            
+            leftButton.setTitle("Edit", for: .normal)
+            leftButton.setTitleColor(.link, for: .normal)
+            
+            rightButton.setImage(.plusImage, for: .normal)
+            rightButton.setTitle("", for: .normal)
+        }
+    }
+    
     // MARK: - IBActions
     
-    @IBAction func editAction(_ sender: UIButton) {
+    @IBAction func leftAction(_ sender: UIButton) {
         
         // Set Not Editing
         if tableView.isEditing {
             
-            isEditingMode = false
             if let dataBeforeEditing = PersonsTableViewData.savedStateBeforeEditing {
                 personsTableViewData = dataBeforeEditing
                 applySnapshot()
@@ -113,12 +118,12 @@ final class ListViewController: UIViewController {
         } else {
             
             // Set Editing
-            isEditingMode = true
             PersonsTableViewData.savedStateBeforeEditing = personsTableViewData
         }
+        isEditingMode.toggle()
     }
     
-    @IBAction func addAction(_ sender: UIButton) {
+    @IBAction func rightAction(_ sender: UIButton) {
         
         // When Editing
         if tableView.isEditing {
@@ -194,7 +199,6 @@ extension ListViewController: UITableViewDelegate {
             if sourceIndexPath.section < proposedDestinationIndexPath.section {
                 let section =  PersonType(rawValue: sourceIndexPath.section) ?? .employee
                 row = dataSource.snapshot().numberOfItems(inSection: section) - 1
-                
             }
             return IndexPath(row: row, section: sourceIndexPath.section)
         }
@@ -203,7 +207,9 @@ extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let viewController = AddNewPersonViewController.create(person: personsTableViewData[indexPath.section][indexPath.row])
-        navigationController?.pushViewController(viewController, animated: true)
+        if let model = dataSource.itemIdentifier(for: indexPath) {
+            let viewController = AddNewPersonViewController.create(person: model)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }

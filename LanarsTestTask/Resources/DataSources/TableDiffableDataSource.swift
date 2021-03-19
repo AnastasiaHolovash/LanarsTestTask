@@ -14,7 +14,7 @@ final class TableDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentif
     var didDeleteItem: ((ItemIdentifierType, IndexPath) -> Void)?
     var didMoveItem: ((ItemIdentifierType, IndexPath) -> Void)?
     
-    // MARK: - Func
+    // MARK: - Override functions
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         

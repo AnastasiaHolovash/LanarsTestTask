@@ -14,7 +14,7 @@ final class CoreDataManager {
     
     typealias AllData = ListViewController.PersonsTableViewData.AllData
     
-    // MARK: - Nested type
+    // MARK: - SortBy
     
     enum SortBy: RawRepresentable {
         
@@ -41,6 +41,9 @@ final class CoreDataManager {
     private var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
+    
+    // MARK: - User defaults
+
     var isEdited: Bool {
         get {
             return UserDefaults.standard.bool(forKey: "isEdited")

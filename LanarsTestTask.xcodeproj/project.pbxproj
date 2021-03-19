@@ -222,14 +222,9 @@
 		5D828EC72602AB2300B5B2FF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */,
-				5D828ECF2602B8F000B5B2FF /* FileManagerExtension.swift */,
-				5D828ED52602C02600B5B2FF /* UIViewExtension.swift */,
-				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
-				5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */,
-				5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */,
-				5DBF1D3826042F830079757E /* UILabelExtension.swift */,
-				5DBF1D3F2604A8450079757E /* UIApplicationExtension.swift */,
+				5DBF1D432604C9C00079757E /* UIKit */,
+				5DBF1D442604C9C70079757E /* Foundation */,
+				5DBF1D452604C9CC0079757E /* CoreData */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -279,6 +274,35 @@
 				5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */,
 			);
 			path = Gallery;
+			sourceTree = "<group>";
+		};
+		5DBF1D432604C9C00079757E /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5DBF1D3F2604A8450079757E /* UIApplicationExtension.swift */,
+				5DBF1D1C2603D31E0079757E /* UIImageExtension.swift */,
+				5DBF1D3826042F830079757E /* UILabelExtension.swift */,
+				5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */,
+				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
+				5D828ED52602C02600B5B2FF /* UIViewExtension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		5DBF1D442604C9C70079757E /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5D828ECF2602B8F000B5B2FF /* FileManagerExtension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		5DBF1D452604C9CC0079757E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5DBF1D1F2603D8F20079757E /* NSManagedObjectExtension.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
