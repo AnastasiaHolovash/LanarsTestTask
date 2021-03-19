@@ -40,6 +40,7 @@
 		5DBF1D3C2604A3D10079757E /* KeyboardEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3B2604A3D10079757E /* KeyboardEventsHandler.swift */; };
 		5DBF1D402604A8450079757E /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3F2604A8450079757E /* UIApplicationExtension.swift */; };
 		5DBF1D492604D5150079757E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D482604D5150079757E /* Validator.swift */; };
+		5DBF1D4C2604D9630079757E /* UITableviewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D4B2604D9630079757E /* UITableviewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		5DBF1D3B2604A3D10079757E /* KeyboardEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventsHandler.swift; sourceTree = "<group>"; };
 		5DBF1D3F2604A8450079757E /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		5DBF1D482604D5150079757E /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		5DBF1D4B2604D9630079757E /* UITableviewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableviewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,7 @@
 				5D828EC82602AB3C00B5B2FF /* UIResponderExtension.swift */,
 				5D828ED82602C3D400B5B2FF /* UIStoryboardExtension.swift */,
 				5D828ED52602C02600B5B2FF /* UIViewExtension.swift */,
+				5DBF1D4B2604D9630079757E /* UITableviewExtension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				5DBF1D272603E7800079757E /* PageViewController.swift in Sources */,
 				5DBF1D1D2603D31E0079757E /* UIImageExtension.swift in Sources */,
 				5DBF1D3C2604A3D10079757E /* KeyboardEventsHandler.swift in Sources */,
+				5DBF1D4C2604D9630079757E /* UITableviewExtension.swift in Sources */,
 				5D4238D126024FF100CAC274 /* LanarsTestTask.xcdatamodeld in Sources */,
 				5D17BF822602987900E2D827 /* PersonTableViewCell.swift in Sources */,
 				5DBF1D232603E12A0079757E /* TableDiffableDataSource.swift in Sources */,

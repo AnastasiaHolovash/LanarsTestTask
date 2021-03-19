@@ -158,6 +158,18 @@ final class ListViewController: UIViewController {
     
     private func applySnapshot(animated: Bool = true) {
         
+        guard !(personsTableViewData.management.isEmpty &&
+              personsTableViewData.employees.isEmpty &&
+              personsTableViewData.accountant.isEmpty) else {
+            
+            tableView.addPlaceholder()
+            var newSnapshot = NSDiffableDataSourceSnapshot<PersonType, Person>()
+            newSnapshot.appendSections([])
+            dataSource.apply(newSnapshot, animatingDifferences: animated)
+            return
+        }
+        tableView.removePlaceholder()
+        
         var newSnapshot = NSDiffableDataSourceSnapshot<PersonType, Person>()
         newSnapshot.appendSections([.management, .employee, .accountant])
         

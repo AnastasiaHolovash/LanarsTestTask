@@ -228,11 +228,11 @@ final class CoreDataManager {
         
         do {
             try context.fetch(request).forEach { context.delete($0) }
-            
+            var dataArray: [ManagedObject] = []
             for index in 0..<array.count {
                 
                 let newObject = array[index]
-                try insertObject(type: ManagedObject.self, managedObjectContext: context) { object in
+                let object = try insertObject(type: ManagedObject.self, managedObjectContext: context) { object in
                     
                     if let management = object as? Management, let newManagement = newObject as? Management  {
                         
@@ -259,11 +259,13 @@ final class CoreDataManager {
                         
                     }
                 }
+                dataArray.append(newObject)
             }
-            
             try context.save()
+            completion(.success(dataArray))
         } catch {
             print("Save Failed: \(error)")
+            completion(.failure(error))
         }
     }
     
