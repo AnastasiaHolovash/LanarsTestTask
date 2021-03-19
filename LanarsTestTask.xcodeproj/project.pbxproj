@@ -34,6 +34,8 @@
 		5DBF1D232603E12A0079757E /* TableDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */; };
 		5DBF1D272603E7800079757E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D262603E7800079757E /* PageViewController.swift */; };
 		5DBF1D2B2603E79C0079757E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */; };
+		5DBF1D3226041E420079757E /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3126041E420079757E /* PersonType.swift */; };
+		5DBF1D35260420080079757E /* ListViewController+PersonsTableViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D34260420080079757E /* ListViewController+PersonsTableViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		5DBF1D222603E12A0079757E /* TableDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDiffableDataSource.swift; sourceTree = "<group>"; };
 		5DBF1D262603E7800079757E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		5DBF1D2A2603E79C0079757E /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		5DBF1D3126041E420079757E /* PersonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonType.swift; sourceTree = "<group>"; };
+		5DBF1D34260420080079757E /* ListViewController+PersonsTableViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+PersonsTableViewData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				5DBF1D1726035ED20079757E /* CoreDataModels */,
+				5DBF1D3126041E420079757E /* PersonType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				5D4238CA26024FF100CAC274 /* ListViewController.swift */,
+				5DBF1D34260420080079757E /* ListViewController+PersonsTableViewData.swift */,
 				5D828ED22602BCE300B5B2FF /* AddNewPersonViewController.swift */,
 			);
 			path = List;
@@ -341,11 +347,13 @@
 				5D828ED02602B8F000B5B2FF /* FileManagerExtension.swift in Sources */,
 				5DBF1D2B2603E79C0079757E /* PhotoViewController.swift in Sources */,
 				5D828EDF2602D0D900B5B2FF /* Person+CoreDataProperties.swift in Sources */,
+				5DBF1D3226041E420079757E /* PersonType.swift in Sources */,
 				5D17BF8C2602A42E00E2D827 /* Employee+CoreDataClass.swift in Sources */,
 				5D17BF8D2602A42E00E2D827 /* Employee+CoreDataProperties.swift in Sources */,
 				5D828EC92602AB3C00B5B2FF /* UIResponderExtension.swift in Sources */,
 				5D828ED32602BCE300B5B2FF /* AddNewPersonViewController.swift in Sources */,
 				5D17BF8E2602A42E00E2D827 /* Accountant+CoreDataClass.swift in Sources */,
+				5DBF1D35260420080079757E /* ListViewController+PersonsTableViewData.swift in Sources */,
 				5D4238CB26024FF100CAC274 /* ListViewController.swift in Sources */,
 				5D17BF902602A42E00E2D827 /* Management+CoreDataClass.swift in Sources */,
 				5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */,

@@ -9,15 +9,17 @@ import UIKit
 
 final class ListViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
-    private var dataSource: TableDiffableDataSource<Section, Person>!
+    // MARK: - Private properties
     
-    let coreDataManager = CoreDataManager.shared
-    
-    private var personsTableViewData = PersonsData(management: [], employees: [], accountant: [])
+    private var dataSource: TableDiffableDataSource<PersonType, Person>!
+    private let coreDataManager = CoreDataManager.shared
+    private var personsTableViewData = PersonsTableViewData(management: [], employees: [], accountant: [])
     
     private var isEditingMode: Bool = false {
         
@@ -44,12 +46,7 @@ final class ListViewController: UIViewController {
         }
     }
     
-    enum Section: Int {
-        
-        case management
-        case employee
-        case accountant
-    }
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,55 +56,19 @@ final class ListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let group = DispatchGroup()
-        
-        DispatchQueue.global(qos: .background).async(group: group) { [weak self] in
+        coreDataManager.readAll { [weak self] result in
             
-            guard let self = self else {
-                return
-            }
-            group.enter()
-            self.coreDataManager.fetch(object: Management.self) { [weak self] result in
-                switch result {
-                case .success(let ent):
-                    ent.forEach { print($0) }
-                    self?.personsTableViewData.management = ent
-                    
-                case .failure(let error):
-                    print(error)
-                }
-                group.leave()
-            }
+            switch result {
             
-            group.enter()
-            self.coreDataManager.fetch(object: Employee.self) { [weak self] result in
-                switch result {
-                case .success(let ent):
-                    ent.forEach { print($0) }
-                    self?.personsTableViewData.employees = ent
-                    
-                case .failure(let error):
-                    print(error)
-                }
-                group.leave()
+            case .success(let data):
+                self?.personsTableViewData.management = data.management
+                self?.personsTableViewData.employees = data.employee
+                self?.personsTableViewData.accountant = data.accountant
+                self?.applySnapshot(animated: false)
+                
+            case .failure(let error):
+                print(error)
             }
-            
-            group.enter()
-            self.coreDataManager.fetch(object: Accountant.self) { [weak self] result in
-                switch result {
-                case .success(let ent):
-                    ent.forEach { print($0) }
-                    self?.personsTableViewData.accountant = ent
-                case .failure(let error):
-                    print(error)
-                }
-                group.leave()
-            }
-            
-        }
-        
-        group.notify(queue: DispatchQueue.main) { [weak self] in
-            self?.applySnapshot(animated: false)
         }
     }
     
@@ -139,13 +100,15 @@ final class ListViewController: UIViewController {
         }
     }
     
+    // MARK: - IBActions
+    
     @IBAction func editAction(_ sender: UIButton) {
         
         // Set Not Editing
         if tableView.isEditing {
             
             isEditingMode = false
-            if let dataBeforeEditing = PersonsData.savedStateBeforeEditing {
+            if let dataBeforeEditing = PersonsTableViewData.savedStateBeforeEditing {
                 personsTableViewData = dataBeforeEditing
                 applySnapshot()
             }
@@ -153,7 +116,7 @@ final class ListViewController: UIViewController {
             
             // Set Editing
             isEditingMode = true
-            PersonsData.savedStateBeforeEditing = personsTableViewData
+            PersonsTableViewData.savedStateBeforeEditing = personsTableViewData
         }
     }
     
@@ -163,30 +126,39 @@ final class ListViewController: UIViewController {
         if tableView.isEditing {
             isEditingMode = false
             
-            let group = DispatchGroup()
+            coreDataManager.updateAll(personsTableViewData: personsTableViewData.allData) { [weak self] result in
+                switch result {
+                
+                case .success:
+                    
+                    self?.applySnapshot(animated: false)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+
+            }
             
-            DispatchQueue.global(qos: .background).async(group: group) { [weak self] in
-                
-                guard let self = self else {
-                    return
-                }
-                
-                group.enter()
-                self.coreDataManager.update(object: Management.self, with: self.personsTableViewData.management) { _ in
-                    group.leave()
-                }
-                group.enter()
-                self.coreDataManager.update(object: Employee.self, with: self.personsTableViewData.employees) { _ in
-                    group.leave()
-                }
-                group.enter()
-                self.coreDataManager.update(object: Accountant.self, with: self.personsTableViewData.accountant) { _ in
-                    group.leave()
-                }
-            }
-            group.notify(queue: DispatchQueue.main) { [weak self] in
-                self?.tableView.reloadData()
-            }
+//            let group = DispatchGroup()
+//
+//            DispatchQueue.global(qos: .background).async(group: group) {
+//
+//                group.enter()
+//                self.coreDataManager.update(object: Management.self, with: self.personsTableViewData.management) { _ in
+//                    group.leave()
+//                }
+//                group.enter()
+//                self.coreDataManager.update(object: Employee.self, with: self.personsTableViewData.employees) { _ in
+//                    group.leave()
+//                }
+//                group.enter()
+//                self.coreDataManager.update(object: Accountant.self, with: self.personsTableViewData.accountant) { _ in
+//                    group.leave()
+//                }
+//            }
+//            group.notify(queue: DispatchQueue.main) { [weak self] in
+//                self?.tableView.reloadData()
+//            }
             
         } else {
             
@@ -196,9 +168,11 @@ final class ListViewController: UIViewController {
         }
     }
     
+    // MARK: - Private func
+    
     private func applySnapshot(animated: Bool = true) {
         
-        var newSnapshot = NSDiffableDataSourceSnapshot<Section, Person>()
+        var newSnapshot = NSDiffableDataSourceSnapshot<PersonType, Person>()
         newSnapshot.appendSections([.management, .employee, .accountant])
         
         newSnapshot.appendItems(personsTableViewData.management, toSection: .management)
@@ -230,16 +204,7 @@ extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            
-            personsTableViewData[indexPath.section].remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+        return tableView.isEditing ? .delete : .none
     }
     
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
@@ -247,7 +212,7 @@ extension ListViewController: UITableViewDelegate {
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             var row = 0
             if sourceIndexPath.section < proposedDestinationIndexPath.section {
-                let section =  Section(rawValue: sourceIndexPath.section) ?? .employee
+                let section =  PersonType(rawValue: sourceIndexPath.section) ?? .employee
                 row = dataSource.snapshot().numberOfItems(inSection: section) - 1
                 
             }
@@ -260,63 +225,5 @@ extension ListViewController: UITableViewDelegate {
         
         let viewController = AddNewPersonViewController.create(person: personsTableViewData[indexPath.section][indexPath.row])
         navigationController?.pushViewController(viewController, animated: true)
-    }
-}
-
-// MARK: - PersonsData
-
-extension ListViewController {
-    
-    struct PersonsData {
-        
-        static var savedStateBeforeEditing: Self?
-        
-        var management: [Management] = []
-        var employees: [Employee] = []
-        var accountant: [Accountant] = []
-        
-        subscript(index: Int) -> [Person] {
-            get {
-                switch index {
-                case 0:
-                    return management
-                case 1:
-                    return employees
-                case 2:
-                    return accountant
-                default:
-                    return []
-                }
-            }
-            set {
-                switch index {
-                case 0:
-                    management = newValue as? [Management] ?? []
-                case 1:
-                    employees = newValue as? [Employee] ?? []
-                case 2:
-                    accountant = newValue as? [Accountant] ?? []
-                default:
-                    break
-                }
-            }
-        }
-        
-    }
-    
-    func compare(personsBefore: [Person], personsAfter: [Person]) -> [(Int, Int)] {
-        
-        var result: [(Int, Int)] = []
-        
-        for oldIndex in 0..<personsBefore.count {
-            let oldPerson = personsBefore[oldIndex]
-            if let newIndex: Int = personsAfter.firstIndex(of: oldPerson) {
-                result.append((oldIndex, newIndex))
-                
-            } else {
-                result.append((oldIndex, -1))
-            }
-        }
-        return result
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class AddNewPersonViewController: UIViewController {
     
     // MARK: - Statics
@@ -47,7 +48,7 @@ final class AddNewPersonViewController: UIViewController {
     @IBOutlet weak var lunchTimeStackView: UIStackView!
     @IBOutlet weak var accountantTypeStackView: UIStackView!
     
-    let coreDataManager = CoreDataManager.shared
+    private let coreDataManager = CoreDataManager.shared
     private var personType: PersonType = .management
     private var person: Person?
     private var style: AddNewPersonViewControllerStyle = .create
@@ -86,19 +87,14 @@ final class AddNewPersonViewController: UIViewController {
     @IBAction func saveAction(_ sender: UIButton) {
         
         switch style {
+        
         case .create:
             createPerson()
-            navigationController?.popViewController(animated: true)
+
         case .edit:
-            
             editPerson()
-//            let id = Int(person?.id ?? 0)
-//
-//            coreDataManager.delete(object: Management.self, id: id) { _ in
-//                self.createPerson(for: id)
-                self.navigationController?.popViewController(animated: true)
-//            }
         }
+        navigationController?.popViewController(animated: true)
     }
     
     private func updateState(animated: Bool = true) {
@@ -142,6 +138,7 @@ final class AddNewPersonViewController: UIViewController {
         guard let person = person else {
             return
         }
+        
         let id = Int(person.id)
         let previousPersonType = PersonType.getType(from: person)
         
@@ -161,6 +158,9 @@ final class AddNewPersonViewController: UIViewController {
                 self.createPerson(for: previousPersonType == self.personType ? id : nil)
             }
         }
+        //        coreDataManager.delete(object: previousPersonType.personSelf, id: id) { _ in
+        //            self.createPerson(for: previousPersonType == self.personType ? id : nil)
+        //        }
     }
     
     private func createPerson(for id: Int? = nil) {
@@ -170,13 +170,13 @@ final class AddNewPersonViewController: UIViewController {
         let receptionHours = Int(receptionHoursTextField.text ?? "") ?? 0
         let workplaceNumber = Int(workplaceNumberTextField.text ?? "") ?? 0
         let lunchTime = Int(lunchTimeTextField.text ?? "") ?? 0
-        let accountantType = accountantTypeSegmentedControl.selectedSegmentIndex == 0 ? Accountant.AccountantType.payroll : Accountant.AccountantType.materialsAccounting
+        let accountantType: Accountant.AccountantType = accountantTypeSegmentedControl.selectedSegmentIndex == 0 ? .payroll : .materialsAccounting
         
         switch personType {
         
         case .management:
             
-            coreDataManager.createManagement(id: id,name: name, salary: salary, receptionHours: receptionHours) { result in
+            coreDataManager.createManagement(id: id, name: name, salary: salary, receptionHours: receptionHours) { result in
                 switch result {
                 case .success(let ent):
                     print(ent)
@@ -186,7 +186,7 @@ final class AddNewPersonViewController: UIViewController {
             }
             
         case .employee:
-            coreDataManager.createEmployee(name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime) { result in
+            coreDataManager.createEmployee(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime) { result in
                 switch result {
                 case .success(let ent):
                     print(ent)
@@ -196,7 +196,7 @@ final class AddNewPersonViewController: UIViewController {
             }
             
         case .accountant:
-            coreDataManager.createAccountant(name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType) { result in
+            coreDataManager.createAccountant(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType) { result in
                 switch result {
                 case .success(let ent):
                     print(ent)
@@ -204,66 +204,6 @@ final class AddNewPersonViewController: UIViewController {
                     print(error)
                 }
             }
-            
         }
     }
 }
-
-
-enum PersonType: Int {
-    
-    case management
-    case employee
-    case accountant
-    
-    var isHasReceptionHours: Bool {
-        switch self {
-        case .management:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    var isHasWorkplaceNumber: Bool {
-        switch self {
-        case .employee, .accountant:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    var isHasLunchTime: Bool {
-        switch self {
-        case .employee, .accountant:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    var isHasAccountantType: Bool {
-        switch self {
-        case .accountant:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    static func getType(from person: Person) -> Self {
-        switch person {
-        case is Management:
-            return .management
-        case is Accountant:
-            return .accountant
-        case is Employee:
-            return .employee
-        default:
-            return .employee
-        }
-    }
-}
-
-

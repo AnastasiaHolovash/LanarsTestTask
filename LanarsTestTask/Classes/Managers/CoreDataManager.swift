@@ -8,17 +8,22 @@
 import CoreData
 import Foundation
 
-class CoreDataManager {
+final class CoreDataManager {
+    
+    typealias AllData = ListViewController.PersonsTableViewData.AllData
+    // MARK: - Statics
+    
+    static let shared = CoreDataManager()
+        
+    // MARK: - Private properties
     
     private let modelName = "LanarsTestTask"
     private let persistentContainer: NSPersistentContainer
-    
-    var viewContext: NSManagedObjectContext {
+    private var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
-    // Singleton
-    static let shared = CoreDataManager()
+    // MARK: - Lifecycle
     
     private init() {
         
@@ -28,11 +33,6 @@ class CoreDataManager {
         container.persistentStoreDescriptions = [fileDescription]
         
         persistentContainer = container
-        setup()
-    }
-    
-    private func setup() {
-        
         persistentContainer.loadPersistentStores { _, error in
             if let error = error {
                 debugPrint(error.localizedDescription)
@@ -40,128 +40,176 @@ class CoreDataManager {
         }
     }
     
-    // MARK: - Create
-    
-    @discardableResult
-    private func insertObject<ManagedObject: NSManagedObject>(type: ManagedObject.Type,
-                                                              managedObjectContext: NSManagedObjectContext,
-                                                              configuration: (ManagedObject) -> Void) throws -> ManagedObject {
-        
-        let entity = ManagedObject.entity()
-        let object: ManagedObject = ManagedObject(entity: entity, insertInto: managedObjectContext)
-        
-        configuration(object)
-        return object
-    }
-    
-    func entityForName(entityName: String) -> NSEntityDescription {
-        return NSEntityDescription.entity(forEntityName: entityName, in: viewContext)!
-    }
-    
     // MARK: Management
     
     func createManagement(id: Int? = nil, name: String, salary: Int, receptionHours: Int, completion: @escaping (Result<Management, Error>) -> Void) {
         
-        let context = persistentContainer.newBackgroundContext()
-        let request: NSFetchRequest<Management> = Management.fetchRequest()
-        request.includesSubentities = false
-        
-        do {
-            let newId = id != nil ? id! : try context.count(for: request)
-            let employee = try insertObject(type: Management.self, managedObjectContext: context) { employee in
-                
-                employee.setup(id: newId, name: name, salary: salary, receptionHours: receptionHours)
-            }
-            try context.save()
-            completion(.success(employee))
-        } catch {
-            debugPrint(error.localizedDescription)
-            completion(.failure(error))
-        }
+        create(object: Management.self, id: id, name: name, salary: salary, workplaceNumber: 0, receptionHours: receptionHours, lunchTime: 0, accountantType: .payroll, completion: completion)
     }
     
     // MARK: Employee
     
-    func createEmployee(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, completion: @escaping (Result<Employee, Error>) -> Void) {
+    func createEmployee(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, completion: @escaping (Result<Employee, Error>) -> Void) {
         
-        let context = persistentContainer.newBackgroundContext()
-        let request: NSFetchRequest<Employee> = Employee.fetchRequest()
-        request.includesSubentities = false
-        do {
-            let id = try context.count(for: request)
-            let employee = try insertObject(type: Employee.self, managedObjectContext: context) { employee in
-                
-                employee.setup(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime)
-            }
-            try context.save()
-            completion(.success(employee))
-        } catch {
-            debugPrint(error.localizedDescription)
-            completion(.failure(error))
-        }
+        create(object: Employee.self, id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, receptionHours: 0, lunchTime: lunchTime, accountantType: .payroll, completion: completion)
     }
     
-    // MARK: Accountant
     
-    func createAccountant(name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: Accountant.AccountantType, completion:@escaping (Result<Accountant, Error>) -> Void) {
+    func createAccountant(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: Accountant.AccountantType, completion:@escaping (Result<Accountant, Error>) -> Void) {
+        
+        create(object: Accountant.self, id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, receptionHours: 0, lunchTime: lunchTime, accountantType: accountantType, completion: completion)
+    }
+    
+    // MARK: - Create
+    
+    private func create<ManagedObject: NSManagedObject>(object: ManagedObject.Type,
+                                                 id: Int?,
+                                                 name: String,
+                                                 salary: Int,
+                                                 workplaceNumber: Int,
+                                                 receptionHours: Int,
+                                                 lunchTime: Int,
+                                                 accountantType: Accountant.AccountantType,
+                                                 completion:@escaping (Result<ManagedObject, Error>) -> Void) {
+        
         
         let context = persistentContainer.newBackgroundContext()
-        let request: NSFetchRequest<Accountant> = Accountant.fetchRequest()
+        let request: NSFetchRequest<ManagedObject> = ManagedObject.fetchRequest()
         request.includesSubentities = false
+        
         do {
-            let id = try context.count(for: request)
-            let employee = try insertObject(type: Accountant.self, managedObjectContext: context) { employee in
-                
-                employee.setup(id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, lunchTime: lunchTime, accountantType: accountantType)
-                
-            }
             
-            try context.save()
+            let newId = id != nil ? id! : try context.count(for: request)
+            let employee = try insertObject(type: ManagedObject.self, managedObjectContext: context) { object in
+                
+                if let management = object as? Management {
+                    
+                    management.setup(id: newId,
+                                     name: name,
+                                     salary: Int(salary))
+                    
+                } else if let accountant = object as? Accountant {
+                    
+                    accountant.setup(id: newId,
+                                     name: name,
+                                     salary: Int(salary),
+                                     workplaceNumber: Int(workplaceNumber),
+                                     lunchTime: Int(lunchTime),
+                                     accountantType: accountantType)
+                
+                } else if let employee = object as? Employee {
+                    
+                    employee.setup(id: newId,
+                                   name: name,
+                                   salary: Int(salary),
+                                   workplaceNumber: Int(workplaceNumber),
+                                   lunchTime: Int(lunchTime))
+                    
+                }
+            }
             completion(.success(employee))
+            try context.save()
         } catch {
             debugPrint(error.localizedDescription)
             completion(.failure(error))
         }
     }
     
-    // MARK: - Fetch
+    // MARK: - Read
     
-    func fetch<Object: NSManagedObject>(object: Object.Type, completion:@escaping (Result<[Object], Error>) -> Void) {
+    func read<ManagedObject: NSManagedObject>(object: ManagedObject.Type, completion: @escaping (Result<[ManagedObject], Error>) -> Void) {
         
-        let request: NSFetchRequest<Object> = Object.fetchRequest()
+        let request: NSFetchRequest<ManagedObject> = ManagedObject.fetchRequest()
         let sort = NSSortDescriptor(key: "id", ascending: true)
         request.sortDescriptors = [sort]
         request.includesSubentities = false
         
         do {
-            let employees = try viewContext.fetch(request)
-            completion(.success(employees))
+            let objects = try viewContext.fetch(request)
+            completion(.success(objects))
         } catch {
             debugPrint(error.localizedDescription)
             completion(.failure(error))
         }
     }
     
+    func readAll(completion: @escaping (Result<AllData, Error>) -> Void) {
+        
+        let group = DispatchGroup()
+        
+        var allData: AllData = ([], [], [])
+        
+        DispatchQueue.global(qos: .background).async(group: group) {
+            
+            group.enter()
+            self.read(object: Management.self) { result in
+                switch result {
+                case .success(let ent):
+                    allData.management = ent
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+                group.leave()
+            }
+            
+            group.enter()
+            self.read(object: Employee.self) { result in
+                switch result {
+                case .success(let ent):
+                    allData.employee = ent
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+                group.leave()
+            }
+            
+            group.enter()
+            self.read(object: Accountant.self) { result in
+                switch result {
+                case .success(let ent):
+                    allData.accountant = ent
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            completion(.success(allData))
+        }
+    }
+    
+    
     // MARK: - Update
     
-    func update<Object: NSManagedObject>(object: Object.Type, with data: [Object], completion: @escaping (Result<[Object], Error>) -> Void) {
+    func update<ManagedObject: NSManagedObject>(object: ManagedObject.Type, with array: [ManagedObject], completion: @escaping (Result<[ManagedObject], Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
-        let request: NSFetchRequest<Object> = Object.fetchRequest()
+        let request: NSFetchRequest<ManagedObject> = ManagedObject.fetchRequest()
         
         do {
             try context.fetch(request).forEach { context.delete($0) }
             
-            for index in 0..<data.count {
+            for index in 0..<array.count {
                 
-                let newObject = data[index]
-                try insertObject(type: Object.self, managedObjectContext: context) { object in
+                let newObject = array[index]
+                try insertObject(type: ManagedObject.self, managedObjectContext: context) { object in
                     
                     if let management = object as? Management, let newManagement = newObject as? Management  {
                         
                         management.setup(id: index,
-                                        name: newManagement.name,
-                                        salary: Int(newManagement.salary))
+                                         name: newManagement.name,
+                                         salary: Int(newManagement.salary))
+                        
+                    } else if let accountant = object as? Accountant, let newAccountant = newObject as? Accountant {
+                        
+                        accountant.setup(id: index,
+                                         name: newAccountant.name,
+                                         salary: Int(newAccountant.salary),
+                                         workplaceNumber: Int(newAccountant.workplaceNumber),
+                                         lunchTime: Int(newAccountant.lunchTime),
+                                         accountantType: Accountant.AccountantType(rawValue: newAccountant.accountantType) ?? .payroll)
                         
                     } else if let employee = object as? Employee, let newEmployee = newObject as? Employee {
                         
@@ -171,14 +219,6 @@ class CoreDataManager {
                                        workplaceNumber: Int(newEmployee.workplaceNumber),
                                        lunchTime: Int(newEmployee.lunchTime))
                         
-                    } else if let accountant = object as? Accountant, let newAccountant = newObject as? Accountant {
-                        
-                        accountant.setup(id: index,
-                                         name: newAccountant.name,
-                                         salary: Int(newAccountant.salary),
-                                         workplaceNumber: Int(newAccountant.salary),
-                                         lunchTime: Int(newAccountant.salary),
-                                         accountantType: Accountant.AccountantType(rawValue: newAccountant.accountantType) ?? .payroll)
                     }
                 }
             }
@@ -189,13 +229,37 @@ class CoreDataManager {
         }
     }
     
-    // MARK: Management
+    func updateAll(personsTableViewData: AllData, completion: @escaping (Result<Bool, Error>) -> Void) {
+        
+        let group = DispatchGroup()
+        
+        DispatchQueue.global(qos: .background).async(group: group) {
+            
+            group.enter()
+            self.update(object: Management.self, with: personsTableViewData.management) { _ in
+                group.leave()
+            }
+            group.enter()
+            self.update(object: Employee.self, with: personsTableViewData.employee) { _ in
+                group.leave()
+            }
+            group.enter()
+            self.update(object: Accountant.self, with: personsTableViewData.accountant) { _ in
+                group.leave()
+            }
+        }
+        group.notify(queue: DispatchQueue.main) {
+            completion(.success(true))
+        }
+    }
     
-    func delete<Object: NSManagedObject>(object: Object.Type, id: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+    // MARK: - Delete
+    
+    func delete<ManagedObject: NSManagedObject>(object: ManagedObject.Type, id: Int, completion: @escaping (Result<Void, Error>) -> Void) {
         
         let context = persistentContainer.newBackgroundContext()
         
-        let request: NSFetchRequest<Object> = Object.fetchRequest()
+        let request: NSFetchRequest<ManagedObject> = ManagedObject.fetchRequest()
         request.predicate = NSPredicate(format: "id == \(id)")
         request.includesSubentities = false
         
@@ -209,4 +273,15 @@ class CoreDataManager {
         }
     }
     
+    @discardableResult
+    private func insertObject<ManagedObject: NSManagedObject>(type: ManagedObject.Type,
+                                                              managedObjectContext: NSManagedObjectContext,
+                                                              configuration: (ManagedObject) -> Void) throws -> ManagedObject {
+        
+        let entity = ManagedObject.entity()
+        let object: ManagedObject = ManagedObject(entity: entity, insertInto: managedObjectContext)
+        
+        configuration(object)
+        return object
+    }
 }
