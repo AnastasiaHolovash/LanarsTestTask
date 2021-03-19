@@ -35,6 +35,7 @@ final class AddNewPersonViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var personTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var salaryTextField: UITextField!
@@ -42,6 +43,7 @@ final class AddNewPersonViewController: UIViewController {
     @IBOutlet weak var workplaceNumberTextField: UITextField!
     @IBOutlet weak var lunchTimeTextField: UITextField!
     @IBOutlet weak var accountantTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var lunchTimeLabel: UILabel!
     
     @IBOutlet weak var salaryStackView: UIStackView!
     @IBOutlet weak var receptionHoursStackView: UIStackView!
@@ -56,6 +58,7 @@ final class AddNewPersonViewController: UIViewController {
     private var person: Person?
     private var style: AddNewPersonViewControllerStyle = .create
     private var keyboardHandler: KeyboardEventsHandler!
+    private let timeValidator = Validator(of: .time)
     
     // MARK: - Nested types
     
@@ -86,6 +89,9 @@ final class AddNewPersonViewController: UIViewController {
         receptionHoursTextField.delegate = self
         workplaceNumberTextField.delegate = self
         lunchTimeTextField.delegate = self
+        
+        lunchTimeTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                                     for: .editingChanged)
     }
     
     // MARK: - IBActions
@@ -121,6 +127,32 @@ final class AddNewPersonViewController: UIViewController {
     @IBAction func didTapOnScreen(_ sender: UITapGestureRecognizer) {
         
         UIApplication.hideKeyboard()
+    }
+    
+    // MARK: - @objc
+    
+    @objc
+    func textFieldDidChange(_ textField: UITextField) {
+        
+        let lunchTimeString = lunchTimeTextField.text ?? "12:00"
+        
+        timeValidator.isValid(lunchTimeString.isEmpty ? "12:00" : lunchTimeString, forceExit: true) { [weak self] result in
+            
+            switch result {
+            case .valid:
+                self?.lunchTimeLabel.text = "lunch time (hh:mm)"
+                self?.lunchTimeLabel.textColor = .placeholderText
+                self?.saveButton.isEnabled = true
+                
+            case .notValid(criteria: let criteria):
+                self?.lunchTimeLabel.text = criteria.errorDescription
+                self?.lunchTimeLabel.textColor = .systemRed
+                self?.saveButton.isEnabled = false
+                
+            case .notValides:
+                break
+            }
+        }
     }
     
     // MARK: - Private functions

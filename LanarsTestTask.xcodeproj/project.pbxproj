@@ -39,6 +39,7 @@
 		5DBF1D3926042F830079757E /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3826042F830079757E /* UILabelExtension.swift */; };
 		5DBF1D3C2604A3D10079757E /* KeyboardEventsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3B2604A3D10079757E /* KeyboardEventsHandler.swift */; };
 		5DBF1D402604A8450079757E /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D3F2604A8450079757E /* UIApplicationExtension.swift */; };
+		5DBF1D492604D5150079757E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF1D482604D5150079757E /* Validator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		5DBF1D3826042F830079757E /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		5DBF1D3B2604A3D10079757E /* KeyboardEventsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventsHandler.swift; sourceTree = "<group>"; };
 		5DBF1D3F2604A8450079757E /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		5DBF1D482604D5150079757E /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 			children = (
 				5D828ECC2602AEFF00B5B2FF /* CoreDataManager.swift */,
 				5DBF1D3B2604A3D10079757E /* KeyboardEventsHandler.swift */,
+				5DBF1D482604D5150079757E /* Validator.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				5DBF1D35260420080079757E /* ListViewController+PersonsTableViewData.swift in Sources */,
 				5D4238CB26024FF100CAC274 /* ListViewController.swift in Sources */,
 				5DBF1D3926042F830079757E /* UILabelExtension.swift in Sources */,
+				5DBF1D492604D5150079757E /* Validator.swift in Sources */,
 				5D17BF902602A42E00E2D827 /* Management+CoreDataClass.swift in Sources */,
 				5D828ECD2602AEFF00B5B2FF /* CoreDataManager.swift in Sources */,
 				5D17BF912602A42E00E2D827 /* Management+CoreDataProperties.swift in Sources */,

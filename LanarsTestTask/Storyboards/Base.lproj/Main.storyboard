@@ -244,7 +244,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="5G8-Qw-OBz"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lunch time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oz6-oj-YPL">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lunch time (hh:mm)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oz6-oj-YPL">
                                                         <rect key="frame" x="0.0" y="31" width="382" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20.5" id="tYK-h8-OZl"/>
@@ -319,6 +319,7 @@
                     <connections>
                         <outlet property="accountantTypeSegmentedControl" destination="G5J-K6-pDd" id="EBh-p2-X1U"/>
                         <outlet property="accountantTypeStackView" destination="Vde-Qa-saD" id="B6V-Mq-Pyt"/>
+                        <outlet property="lunchTimeLabel" destination="Oz6-oj-YPL" id="gr6-Rk-MLk"/>
                         <outlet property="lunchTimeStackView" destination="lWB-W0-dyc" id="ZnZ-rF-9Nl"/>
                         <outlet property="lunchTimeTextField" destination="rlB-vI-FD1" id="ycz-nw-6aZ"/>
                         <outlet property="nameTextField" destination="Mun-x0-0wy" id="waY-zo-QHl"/>
@@ -327,6 +328,7 @@
                         <outlet property="receptionHoursTextField" destination="2Fr-6Y-hsa" id="NlZ-G8-hKE"/>
                         <outlet property="salaryStackView" destination="PMF-gl-ejP" id="w9w-zQ-w5g"/>
                         <outlet property="salaryTextField" destination="Jz3-8y-cpa" id="Qq9-RZ-AF9"/>
+                        <outlet property="saveButton" destination="Lcb-9r-m8e" id="eAc-Er-2Za"/>
                         <outlet property="scrollView" destination="lzw-c8-356" id="DNW-xa-ib8"/>
                         <outlet property="workplaceNumberStackView" destination="m4x-Aw-v6D" id="Mmo-En-snA"/>
                         <outlet property="workplaceNumberTextField" destination="2kc-8u-w9r" id="cdg-gs-52l"/>
