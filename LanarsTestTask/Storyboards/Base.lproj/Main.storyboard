@@ -142,7 +142,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PMF-gl-ejP">
                                                 <rect key="frame" x="0.0" y="97" width="382" height="51.5"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jz3-8y-cpa">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jz3-8y-cpa">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="sJb-Sl-cez"/>
@@ -171,7 +171,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2U7-z6-XZa">
                                                 <rect key="frame" x="0.0" y="156.5" width="382" height="51.5"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Fr-6Y-hsa">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Fr-6Y-hsa">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="f5n-2o-oYD"/>
@@ -200,7 +200,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="m4x-Aw-v6D">
                                                 <rect key="frame" x="0.0" y="216" width="382" height="51.5"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2kc-8u-w9r">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2kc-8u-w9r">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="hQT-Pm-EKn"/>
@@ -229,13 +229,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lWB-W0-dyc">
                                                 <rect key="frame" x="0.0" y="275.5" width="382" height="51.5"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rlB-vI-FD1">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rlB-vI-FD1">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="sbw-mP-lDr"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wYP-gf-4VP">
                                                         <rect key="frame" x="0.0" y="30" width="382" height="1"/>

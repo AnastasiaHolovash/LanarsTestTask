@@ -190,7 +190,8 @@ final class AddNewPersonViewController: UIViewController {
         let salary = Int(salaryTextField.text ?? "") ?? 0
         let receptionHours = Int(receptionHoursTextField.text ?? "") ?? 0
         let workplaceNumber = Int(workplaceNumberTextField.text ?? "") ?? 0
-        let lunchTime = Int(lunchTimeTextField.text ?? "") ?? 0
+        let lunchTimeString = lunchTimeTextField.text ?? "12:00"
+        let lunchTime = lunchTimeString.isEmpty ? "12:00" : lunchTimeString
         let accountantType: Accountant.AccountantType = accountantTypeSegmentedControl.selectedSegmentIndex == 0 ? .payroll : .materialsAccounting
         
         switch personType {

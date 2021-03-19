@@ -12,6 +12,6 @@ import CoreData
 
 extension Employee {
 
-    @NSManaged public var lunchTime: Int16
+    @NSManaged public var lunchTime: String
     @NSManaged public var workplaceNumber: Int16
 }

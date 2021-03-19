@@ -12,10 +12,10 @@ import CoreData
 @objc(Employee)
 public class Employee: Person {
     
-    func setup(id: Int, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int) {
+    func setup(id: Int, name: String, salary: Int, workplaceNumber: Int, lunchTime: String) {
         super.setup(id: id, name: name, salary: salary)
         
         self.workplaceNumber = Int16(workplaceNumber)
-        self.lunchTime = Int16(lunchTime)
+        self.lunchTime = lunchTime
     }
 }

@@ -74,19 +74,19 @@ final class CoreDataManager {
     
     func createManagement(id: Int? = nil, name: String, salary: Int, receptionHours: Int, completion: @escaping (Result<Management, Error>) -> Void) {
         
-        create(object: Management.self, id: id, name: name, salary: salary, workplaceNumber: 0, receptionHours: receptionHours, lunchTime: 0, accountantType: .payroll, completion: completion)
+        create(object: Management.self, id: id, name: name, salary: salary, workplaceNumber: 0, receptionHours: receptionHours, lunchTime: "", accountantType: .payroll, completion: completion)
     }
     
     // MARK: Employee
     
-    func createEmployee(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, completion: @escaping (Result<Employee, Error>) -> Void) {
+    func createEmployee(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: String, completion: @escaping (Result<Employee, Error>) -> Void) {
         
         create(object: Employee.self, id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, receptionHours: 0, lunchTime: lunchTime, accountantType: .payroll, completion: completion)
     }
     
     // MARK: Accountant
     
-    func createAccountant(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: Int, accountantType: Accountant.AccountantType, completion:@escaping (Result<Accountant, Error>) -> Void) {
+    func createAccountant(id: Int?, name: String, salary: Int, workplaceNumber: Int, lunchTime: String, accountantType: Accountant.AccountantType, completion:@escaping (Result<Accountant, Error>) -> Void) {
         
         create(object: Accountant.self, id: id, name: name, salary: salary, workplaceNumber: workplaceNumber, receptionHours: 0, lunchTime: lunchTime, accountantType: accountantType, completion: completion)
     }
@@ -99,7 +99,7 @@ final class CoreDataManager {
                                                         salary: Int,
                                                         workplaceNumber: Int,
                                                         receptionHours: Int,
-                                                        lunchTime: Int,
+                                                        lunchTime: String,
                                                         accountantType: Accountant.AccountantType,
                                                         completion:@escaping (Result<ManagedObject, Error>) -> Void) {
         
@@ -125,7 +125,7 @@ final class CoreDataManager {
                                      name: name,
                                      salary: Int(salary),
                                      workplaceNumber: Int(workplaceNumber),
-                                     lunchTime: Int(lunchTime),
+                                     lunchTime: lunchTime,
                                      accountantType: accountantType)
                     
                 } else if let employee = object as? Employee {
@@ -134,7 +134,7 @@ final class CoreDataManager {
                                    name: name,
                                    salary: Int(salary),
                                    workplaceNumber: Int(workplaceNumber),
-                                   lunchTime: Int(lunchTime))
+                                   lunchTime: lunchTime)
                     
                 }
             }
@@ -246,7 +246,7 @@ final class CoreDataManager {
                                          name: newAccountant.name,
                                          salary: Int(newAccountant.salary),
                                          workplaceNumber: Int(newAccountant.workplaceNumber),
-                                         lunchTime: Int(newAccountant.lunchTime),
+                                         lunchTime: newAccountant.lunchTime,
                                          accountantType: Accountant.AccountantType(rawValue: newAccountant.accountantType) ?? .payroll)
                         
                     } else if let employee = object as? Employee, let newEmployee = newObject as? Employee {
@@ -255,7 +255,7 @@ final class CoreDataManager {
                                        name: newEmployee.name,
                                        salary: Int(newEmployee.salary),
                                        workplaceNumber: Int(newEmployee.workplaceNumber),
-                                       lunchTime: Int(newEmployee.lunchTime))
+                                       lunchTime: newEmployee.lunchTime)
                         
                     }
                 }
